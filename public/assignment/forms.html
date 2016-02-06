@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Form Maker: Admin</title>
+    <title>Form Maker: Forms</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -50,84 +50,77 @@
             <ul class="nav nav-sidebar">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li class="active"><a href="admin.html">Admin</a></li>
-                <li><a href="forms.html">Forms</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li class="active"><a href="forms.html">Forms</a></li>
             </ul>
         </div>
         <div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Admin</h1>
-            <h3>Users</h3>
+            <h1 class="page-header">Forms</h1>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="forms.html">Forms</a></li>
+                <li><a href="form-fields.html">Fields</a></li>
+            </ul>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
-                    <tr>
-                        <th><i class="fa fa-sort-desc">Username</i></th>
-                        <th><i class="fa fa-sort-desc">Password</i></th>
-                        <th><i class="fa fa-sort-desc">Role</i></th>
-                        <th><i class="fa fa-sort-desc">Action</i></th>
-                    </tr>
-                    <tr>
-                        <td><input class="form-control" placeholder="username"></td>
-                        <td><input class="form-control" placeholder="password"></td>
-                        <td><input class="form-control" placeholder="role1, role2"></td>
-                        <td>
-                            <div>
-                                <button class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button>
-                                <button class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-ok"></span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <th><i class="fa fa-sort-desc">Form Name</i></th>
+                            <th><i class="fa fa-sort-desc">Action</i></th>
+                        </tr>
+                        <tr>
+                            <td><input class="form-control" placeholder="name"></td>
+                            <td>
+                                <div>
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>alice</td>
-                        <td></td>
-                        <td>student</td>
-                        <td>
-                            <div>
-                                <button class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </button>
-                                <button class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>bob</td>
-                        <td></td>
-                        <td>faculty|admin</td>
-                        <td>
-                            <div>
-                                <button class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </button>
-                                <button class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>charlie</td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div>
-                                <button class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </button>
-                                <button class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td><a href="form-fields.html">Registration Form</a></td>
+                            <td>
+                                <div>
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="form-fields.html">Contact List</a></td>
+                            <td>
+                                <div>
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="form-fields.html">To Do List</a></td>
+                            <td>
+                                <div>
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
