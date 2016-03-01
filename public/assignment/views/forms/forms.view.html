@@ -1,115 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
-
-    <title>Form Maker: Forms</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
-</head>
-
-<body>
-
-
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Forms</h1>
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="forms.html">Forms</a></li>
-                <li><a href="form-fields.html">Fields</a></li>
-            </ul>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th><i class="fa fa-sort-desc">Form Name</i></th>
-                            <th><i class="fa fa-sort-desc">Action</i></th>
-                        </tr>
-                        <tr>
-                            <td><input class="form-control" placeholder="name"></td>
-                            <td>
-                                <div>
-                                    <button class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </button>
-                                    <button class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><a href="form-fields.html">Registration Form</a></td>
-                            <td>
-                                <div>
-                                    <button class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <button class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a href="form-fields.html">Contact List</a></td>
-                            <td>
-                                <div>
-                                    <button class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <button class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a href="form-fields.html">To Do List</a></td>
-                            <td>
-                                <div>
-                                    <button class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <button class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="FormController">
+    <h1 class="page-header">Forms</h1>
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#/forms">Forms</a></li>
+        <li role="presentation"><a href="#/form-fields">Fields</a></li>
+    </ul>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><i class="fa fa-sort-desc"><label>Form Name</label></i></th>
+                <th><i class="fa fa-sort-desc"><label>Action</label></i></th>
+            </tr>
+            <tr>
+                <td><input ng-model="form.title" class="form-control ng-pristine ng-valid ng-touched" placeholder="name"></td>
+                <td>
+                    <div>
+                        <button ng-click="addForm(form)" class="btn btn-primary pull-middle">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        <button ng-click="updateForm(form)" class="btn btn-primary pull-middle">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="form in forms">
+                <td><a href="#/form-fields">{{form.title}}</a></td>
+                <td>
+                    <div>
+                        <button ng-click="deleteForm($index)" class="btn btn-primary pull-middle">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                        <button ng-click="selectForm($index)" class="btn btn-primary pull-middle">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-
-<!--<script src="../../dist/js/bootstrap.min.js"></script>-->
-<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-<!--<script src="../../assets/js/vendor/holder.min.js"></script>-->
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
-</body>
-</html>
