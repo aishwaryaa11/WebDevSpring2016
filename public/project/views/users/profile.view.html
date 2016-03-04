@@ -52,18 +52,22 @@
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
-            <ul class="dropdown-menu" id="inputGender" placeholder="{{currentUser.gender}}" ng-model="currentUser.gender">
-                <li><a href="update(currentUser)">Female</a></li>
-            </ul>
+            <div class="col-sm-6">
+                <ul class="dropdown-menu" id="inputGender" placeholder="{{currentUser.gender}}" ng-model="currentUser.gender">
+                    <li><a href="#/profile">Female</a></li>
+                </ul>
+            </div>
         </div>
     </form>
     <form class="form-horizontal col-sm-10">
         <label for="aboutme" class="col-sm-2 control-label">About Me:</label>
         <textarea name="paragraph_text" cols="50" rows="10" id="aboutme" placeholder="{{currentUser.aboutme}}" ng-model="currentUser.aboutme">
         </textarea>
-        <!--<div class="col-sm-6">-->
-            <!--<input >-->
-        <!--</div>-->
+    </form>
+    <form class="form-horizontal col-sm-10">
+        <label for="placesbeen" class="col-sm-2 control-label">Places I've been to:</label>
+        <textarea name="paragraph_text" cols="50" rows="10" id="placesbeen" placeholder="{{currentUser.placesbeen}}" ng-model="currentUser.placesbeen">
+        </textarea>
     </form>
     <form class="form-horizontal col-sm-10">
         <div class="form-group">
