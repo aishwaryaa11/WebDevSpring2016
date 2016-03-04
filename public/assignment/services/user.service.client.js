@@ -1,31 +1,25 @@
 (function() {
     angular
-        .module("Travelogue")
+        .module("FormBuilderApp")
         .factory("UserService", userService);
 
     function userService() {
         var users = [
             {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
                 "username":"alice",  "password":"alice",   "roles": ["student"],
-                "email": "alice@alice.com", "age": "22", "aboutme": "Senior at Northeastern University",
-                "placesbeen": "New York, Philly, London",  "placesfuture": "Take me to Venice!"},
+                "email": "alice@alice.com"                                              },
             {	"_id":234, "firstName":"Bob",              "lastName":"Hope",
                 "username":"bob",    "password":"bob",     "roles": ["admin"],
-                "email": "bob@bob.com", "age": "25", "aboutme": "I am awesome",
-                "placesbeen": "Born and Raised in Waltham, MA. Never been out.",
-                "placesfuture": "Literally anywhere besides the places I'm in currently..."},
+                "email": "bob@bob.com"                                                  },
             {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
                 "username":"charlie","password":"charlie", "roles": ["faculty"],
-                "email": "charlie@charlie.como", "age": "52", "aboutme": "Lecturer",
-                "placesbeen": "Chicago, San Francisco",  "placesfuture": "Nirvana"},
+                "email": "charlie@charlie.como"                                         },
             {	"_id":456, "firstName":"Dan",              "lastName":"Craig",
                 "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"],
-                "email": "dan@dan.com", "age": "30", "aboutme": "Senior at Northeastern University",
-                "placesbeen": "Every state in the country",  "placesfuture": "Venus"},
+                "email": "dan@dan.com"                                                  },
             {	"_id":567, "firstName":"Edward",           "lastName":"Norton",
                 "username":"ed",     "password":"ed",      "roles": ["student"],
-                "email": "ed@ed.com", "age": "18", "aboutme": "Go Huskies!",
-                "placesbeen": "Canada",  "placesfuture": "Not Canada"}
+                "email": "ed@ed.com"                                                    }
         ];
 
         var service = {
@@ -82,13 +76,7 @@
                 firstName: user.firstName,
                 lastName: user.lastName,
                 roles: user.roles,
-                email: user.email,
-                age: user.age,
-                location: user.location,
-                gender: user.gender,
-                aboutme: user.aboutme,
-                placesbeen: user.placesbeen,
-                placesfuture: user.placesfuture
+                email: user.email
             };
 
             users.push(newUser);
@@ -113,12 +101,6 @@
                 userTemp.username = user.username;
                 userTemp.roles = user.roles;
                 userTemp.email = user.email;
-                userTemp.age = user.age;
-                userTemp.location = user.location;
-                userTemp.gender = user.gender;
-                userTemp.aboutme = user.aboutme;
-                userTemp.placesbeen = user.placesbeen;
-                userTemp.placesfuture = user.placesfuture;
                 return userTemp;
             } else {
                 return null;
