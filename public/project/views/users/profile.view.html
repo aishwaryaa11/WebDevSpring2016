@@ -53,14 +53,13 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" id="inputGender" placeholder="{{currentUser.gender}}" ng-model="currentUser.gender">
-                <li><a href="#">Female</a></li>
+                <li><a href="update(currentUser)">Female</a></li>
             </ul>
         </div>
     </form>
     <form class="form-horizontal col-sm-10">
         <label for="aboutme" class="col-sm-2 control-label">About Me:</label>
-        <textarea name="paragraph_text" cols="50" rows="10">
-            <input class="form-control" id="aboutme" placeholder="{{currentUser.aboutme}}" ng-model="currentUser.aboutme">
+        <textarea name="paragraph_text" cols="50" rows="10" id="aboutme" placeholder="{{currentUser.aboutme}}" ng-model="currentUser.aboutme">
         </textarea>
         <!--<div class="col-sm-6">-->
             <!--<input >-->
