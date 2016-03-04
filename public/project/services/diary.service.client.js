@@ -30,7 +30,7 @@
                 userId: userId
             };
 
-            forms.push(newD);
+            diaries.push(newD);
             return newD;
         }
 

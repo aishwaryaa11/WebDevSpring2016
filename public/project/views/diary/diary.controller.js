@@ -15,13 +15,13 @@
 
         function addD(d) {
             if (typeof d !== "undefined" && d.title != "") {
-                var newD = DiaryService.createFormForUser($rootScope.currentUser._id, d);
-                $scope.forms.push(newD);
+                var newD = DiaryService.createDiaryForUser($rootScope.currentUser._id, d);
+                $scope.diaries.push(newD);
             }
         }
 
         function updateD(d) {
-            var newD = DiaryService.updateFormById(selectedDId, d);
+            var newD = DiaryService.updateDiaryById(selectedDId, d);
         }
 
         function deleteD(index) {
@@ -32,7 +32,7 @@
 
         function selectD(index) {
             selectedDId = $scope.diaries[index]._id;
-            var d = DiaryService.findFormById(selectedDId);
+            var d = DiaryService.findDiaryById(selectedDId);
             $scope.d = {
                 _id: d._id,
                 title: d.title,
