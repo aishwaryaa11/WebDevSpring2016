@@ -45,10 +45,8 @@
                 <input class="form-control" id="inputLocation" placeholder="{{currentUser.location}}" ng-model="currentUser.location">
             </div>
         </div>
-        <div>
-            <label>Gender:</label>
-        </div>
         <div class="btn-group">
+            <label for="inputGender" class="col-sm-2 control-label">Gender:</label>
             <button type="button" class="btn btn-default">Male</button>
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
@@ -57,14 +55,18 @@
             <ul class="dropdown-menu">
                 <li><a href="#">Female</a></li>
             </ul>
+            <div class="col-sm-6">
+                <input class="form-control" id="inputGender" placeholder="{{currentUser.gender}}" ng-model="currentUser.gender">
+            </div>
         </div>
     </form>
-    <textarea name="paragraph_text" cols="50" rows="10">
+    <form class="form-horizontal col-sm-10">
         <label for="aboutme" class="col-sm-2 control-label">About Me:</label>
+        <textarea name="paragraph_text" cols="50" rows="10"></textarea>
         <div class="col-sm-6">
             <input class="form-control" id="aboutme" placeholder="{{currentUser.aboutme}}" ng-model="currentUser.aboutme">
         </div>
-    </textarea>
+    </form>
     <form class="form-horizontal col-sm-10">
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
