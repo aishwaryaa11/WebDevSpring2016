@@ -4,7 +4,7 @@
         .controller("DiaryController", diaryController);
 
     function diaryController($scope, DiaryService, $rootScope) {
-        $scope.diaries = DiaryService.findAllFormsForUser($rootScope.currentUser._id);
+        $scope.diaries = DiaryService.findAllDiariesForUser($rootScope.currentUser._id);
 
         $scope.addD = addD;
         $scope.updateD = updateD;

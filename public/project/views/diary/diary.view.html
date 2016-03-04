@@ -1,5 +1,5 @@
 <div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="DiaryController">
-    <h1 class="page-header">Diary</h1>
+    <h1 class="page-header">Diaries</h1>
     <!--<ul class="nav nav-tabs">-->
         <!--<li role="presentation" class="active"><a href="#/diary">Diary</a></li>-->
         <!--<li role="presentation"><a href="#/diary-expand">Full View</a></li>-->
@@ -23,8 +23,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="d in diaries">
-                <td><a href="#/diary-expand">{{d.title}}</a></td>
+            <tr ng-repeat="form in diaries">
+                <td><a href="#/diary-expand">{{form.title}}</a></td>
                 <td>
                     <div>
                         <button ng-click="deleteD($index)" class="btn btn-primary pull-middle">
