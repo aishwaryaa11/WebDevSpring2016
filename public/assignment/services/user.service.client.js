@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("FormBuilderApp")
+        .module("Travelogue")
         .factory("UserService", userService);
 
     function userService() {
@@ -76,7 +76,13 @@
                 firstName: user.firstName,
                 lastName: user.lastName,
                 roles: user.roles,
-                email: user.email
+                email: user.email,
+                age: user.age,
+                location: user.location,
+                gender: user.gender,
+                aboutme: user.aboutme,
+                placesbeen: user.placesbeen,
+                placesfuture: user.placesfuture
             };
 
             users.push(newUser);
@@ -101,6 +107,12 @@
                 userTemp.username = user.username;
                 userTemp.roles = user.roles;
                 userTemp.email = user.email;
+                userTemp.age = user.age;
+                userTemp.location = user.location;
+                userTemp.gender = user.gender;
+                userTemp.aboutme = user.aboutme;
+                userTemp.placesbeen = user.placesbeen;
+                userTemp.placesfuture = user.placesfuture;
                 return userTemp;
             } else {
                 return null;
