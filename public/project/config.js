@@ -28,8 +28,7 @@
                 controller: "DiaryController"
             })
             .when("/diary-expand", {
-                templateUrl: "views/diary/diary-expand.view.html",
-                controller: "DiaryExpandController"
+                templateUrl: "views/diary/diary-expand.view.html"
             })
             .when("/photos", {
                 templateUrl: "views/photos/photos.view.html",
