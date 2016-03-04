@@ -5,7 +5,7 @@
 
     function diaryService() {
 
-        var forms = [
+        var diaries = [
             {"_id": "000", "title": "Contacts", "userId": 123},
             {"_id": "010", "title": "ToDo",     "userId": 123},
             {"_id": "020", "title": "CDs",      "userId": 234}
@@ -13,67 +13,67 @@
 
 
         var service = {
-            createFormForUser: createFormForUser,
-            findAllFormsForUser: findAllFormsForUser,
-            findFormById: findFormById,
-            findAllForms: findAllForms,
-            deleteFormById: deleteFormById,
-            updateFormById: updateFormById
+            createDiaryForUser: createDiaryForUser,
+            findAllDiariesForUser: findAllDiariesForUser,
+            findDiaryById: findDiaryById,
+            findAllDiaries: findAllDiaries,
+            deleteDiaryById: deleteDiaryById,
+            updateDiaryById: updateDiaryById
         };
 
         return service;
 
-        function createFormForUser(userId, form, callback) {
-            var newForm = {
+        function createDiaryForUser(userId, diary, callback) {
+            var newD = {
                 _id: (new Date).getTime(),
                 title: form.title,
                 userId: userId
             };
 
-            forms.push(newForm);
-            return newForm;
+            forms.push(newD);
+            return newD;
         }
 
-        function findAllFormsForUser(userId, callback) {
+        function findAllDiariesForUser(userId, callback) {
             var res = [];
-            for (var f in forms) {
-                if (forms[f].userId == userId) {
-                    res.push(forms[f]);
+            for (var f in diaries) {
+                if (diaries[f].userId == userId) {
+                    res.push(diaries[f]);
                 }
             }
 
             return res;
         }
 
-        function findFormById(formId, callback) {
-            for (var f in forms) {
-                if (forms[f]._id == formId) {
-                    return forms[f];
+        function findDiaryById(DId, callback) {
+            for (var f in diaries) {
+                if (diaries[f]._id == DId) {
+                    return diaries[f];
                 }
             }
 
             return null;
         }
 
-        function findAllForms(callback) {
-            return forms;
+        function findAllDiaries(callback) {
+            return diaries;
         }
 
-        function deleteFormById(formId, callback) {
-            var form = findFormById(formId);
-            if (form != null) {
-                forms.splice(forms.indexOf(form), 1);
+        function deleteDiaryById(DId, callback) {
+            var diary = findDiaryById(DId);
+            if (diary != null) {
+                diaries.splice(diaries.indexOf(diary), 1);
             } else {
                 return null;
             }
         }
 
-        function updateFormById(formId, newForm, callback) {
-            var formTemp = findFormById(formId);
-            if (formTemp != null) {
-                formTemp.title = newForm.title;
-                formTemp.userId = newForm.userId;
-                return formTemp;
+        function updateDiaryById(DId, newD, callback) {
+            var dTemp = findDiaryById(DId);
+            if (dTemp != null) {
+                dTemp.title = newD.title;
+                dTemp.userId = newD.userId;
+                return dTemp;
             } else {
                 return null;
             }

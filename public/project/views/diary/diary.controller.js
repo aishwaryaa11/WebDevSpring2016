@@ -4,39 +4,39 @@
         .controller("DiaryController", diaryController);
 
     function diaryController($scope, DiaryService, $rootScope) {
-        $scope.forms = DiaryService.findAllFormsForUser($rootScope.currentUser._id);
+        $scope.diaries = DiaryService.findAllFormsForUser($rootScope.currentUser._id);
 
-        $scope.addForm = addForm;
-        $scope.updateForm = updateForm;
-        $scope.deleteForm = deleteForm;
-        $scope.selectForm = selectForm;
+        $scope.addD = addD;
+        $scope.updateD = updateD;
+        $scope.deleteD = deleteD;
+        $scope.selectD = selectD;
 
-        var selectedFormId = null;
+        var selectedDId = null;
 
-        function addForm(form) {
-            if (typeof form !== "undefined" && form.title != "") {
-                var newForm = DiaryService.createFormForUser($rootScope.currentUser._id, form);
-                $scope.forms.push(newForm);
+        function addD(d) {
+            if (typeof d !== "undefined" && d.title != "") {
+                var newD = DiaryService.createFormForUser($rootScope.currentUser._id, d);
+                $scope.forms.push(newD);
             }
         }
 
-        function updateForm(form) {
-            var newForm = DiaryService.updateFormById(selectedFormId, form);
+        function updateD(d) {
+            var newD = DiaryService.updateFormById(selectedDId, d);
         }
 
-        function deleteForm(index) {
-            selectedFormId = $scope.forms[index]._id;
-            DiaryService.deleteFormById(selectedFormId);
-            $scope.forms.splice(index, 1);
+        function deleteD(index) {
+            selectedDId = $scope.diaries[index]._id;
+            DiaryService.deleteDiaryById(selectedDId);
+            $scope.diaries.splice(index, 1);
         }
 
-        function selectForm(index) {
-            selectedFormId = $scope.forms[index]._id;
-            var form = DiaryService.findFormById(selectedFormId);
-            $scope.form = {
-                _id: form._id,
-                title: form.title,
-                userId: form.userId
+        function selectD(index) {
+            selectedDId = $scope.diaries[index]._id;
+            var d = DiaryService.findFormById(selectedDId);
+            $scope.d = {
+                _id: d._id,
+                title: d.title,
+                userId: d.userId
             };
         }
     }
