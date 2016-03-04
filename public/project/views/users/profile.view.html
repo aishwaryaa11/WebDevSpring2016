@@ -57,13 +57,18 @@
                 <textarea name="paragraph_text" cols="50" rows="10" id="aboutme" placeholder="{{currentUser.aboutme}}" ng-model="currentUser.aboutme"></textarea>
             </div>
         </div>
-    </form>
-    <form class="form-horizontal col-sm-10">
-        <label for="placesbeen" class="col-sm-2 control-label">Places I've been to:</label>
-        <textarea name="paragraph_text" cols="50" rows="10" id="placesbeen" placeholder="{{currentUser.placesbeen}}" ng-model="currentUser.placesbeen">
-        </textarea>
-    </form>
-    <form class="form-horizontal col-sm-10">
+        <div class="form-group">
+            <label for="placesbeen" class="col-sm-2 control-label">Places I've been to:</label>
+            <div class="col-sm-6">
+                <textarea name="paragraph_text" cols="50" rows="10" id="placesbeen" placeholder="{{currentUser.placesbeen}}" ng-model="currentUser.placesbeen"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="placesfuture" class="col-sm-2 control-label">Places I want to visit:</label>
+            <div class="col-sm-6">
+                <textarea name="paragraph_text" cols="50" rows="10" id="placesfuture" placeholder="{{currentUser.placesfuture}}" ng-model="currentUser.placesfuture"></textarea>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <form>
