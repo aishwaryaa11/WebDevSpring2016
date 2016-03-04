@@ -12,7 +12,7 @@
         $scope.currentDiary = $rootScope.currentDiary;
 
         if (!$scope.currentDiary) {
-            $location.url("/home");
+            $location.url("/diary-expand");
         }
 
         function update(diary) {
