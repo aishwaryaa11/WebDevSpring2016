@@ -4,54 +4,41 @@
     <div ng-show="error" class="alert alert-success" role="alert">{{error}}</div>
     <form class="form-horizontal col-sm-8">
         <div class="form-group">
-            <label for="inputUsername" class="col-sm-1 control-label">Username:</label>
-            <div class="col-sm-5">
+            <label for="inputUsername" class="col-sm-2 control-label">Username:</label>
+            <div class="col-sm-6">
                 <input class="form-control" id="inputUsername" placeholder="{{currentUser.username}}" ng-model="currentUser.username">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword" class="col-sm-1 control-label">Password:</label>
-            <div class="col-sm-5">
+            <label for="inputPassword" class="col-sm-12 control-label">Password:</label>
+            <div class="col-sm-16">
                 <input type="password" class="form-control" id="inputPassword" placeholder="{{currentUser.password}}" ng-model="currentUser.password">
             </div>
         </div>
         <div class="form-group">
-            <label for="firstname" class="col-sm-1 control-label">First Name:</label>
-            <div class="col-sm-8">
+            <label for="firstname" class="col-sm-2 control-label">First Name:</label>
+            <div class="col-sm-6">
                 <input class="form-control" id="firstname" placeholder="{{currentUser.firstName}}" ng-model="currentUser.firstname">
             </div>
         </div>
         <div class="form-group">
-            <label for="lastname" class="col-sm-1 control-label">Last Name:</label>
-            <div class="col-sm-5">
+            <label for="lastname" class="col-sm-2 control-label">Last Name:</label>
+            <div class="col-sm-6">
                 <input class="form-control" id="lastname" placeholder="{{currentUser.lastName}}" ng-model="currentUser.lastname">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputEmail" class="col-sm-1 control-label">Email:</label>
-            <div class="col-sm-5">
+            <label for="inputEmail" class="col-sm-2 control-label">Email:</label>
+            <div class="col-sm-6">
                 <input type="email" class="form-control" id="inputEmail" placeholder="{{currentUser.email}}" ng-model="currentUser.email">
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-15">
+            <div class="col-sm-offset-2 col-sm-10">
                 <form>
                     <button type="submit" class="btn btn-primary" ng-click="update(currentUser)">Update</button>
                 </form>
             </div>
         </div>
     </form>
-    <form class="form-horizontal col-sm-18">
-        <div class="form-group">
-            <label for="inputUsername" class="col-sm-1 control-label">Username:</label>
-            <div class="col-sm-5">
-                <input class="form-control" id="inputUsername" placeholder="{{currentUser.username}}" ng-model="currentUser.username">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword" class="col-sm-1 control-label">Password:</label>
-            <div class="col-sm-5">
-                <input type="password" class="form-control" id="inputPassword" placeholder="{{currentUser.password}}" ng-model="currentUser.password">
-            </div>
-        </div>
 </div>
