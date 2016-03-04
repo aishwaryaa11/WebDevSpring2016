@@ -54,18 +54,18 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a href="#">Female</a></li>
-            </ul>
-            <div class="col-sm-6">
                 <input class="form-control" id="inputGender" placeholder="{{currentUser.gender}}" ng-model="currentUser.gender">
-            </div>
+            </ul>
         </div>
     </form>
     <form class="form-horizontal col-sm-10">
         <label for="aboutme" class="col-sm-2 control-label">About Me:</label>
-        <textarea name="paragraph_text" cols="50" rows="10"></textarea>
-        <div class="col-sm-6">
+        <textarea name="paragraph_text" cols="50" rows="10">
             <input class="form-control" id="aboutme" placeholder="{{currentUser.aboutme}}" ng-model="currentUser.aboutme">
-        </div>
+        </textarea>
+        <!--<div class="col-sm-6">-->
+            <!--<input >-->
+        <!--</div>-->
     </form>
     <form class="form-horizontal col-sm-10">
         <div class="form-group">
