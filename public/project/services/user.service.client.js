@@ -13,7 +13,7 @@
                 "username":"bob",    "password":"bob",     "roles": ["admin"],
                 "email": "bob@bob.com", "age": "25", "aboutme": "I am awesome",
                 "placesbeen": "Born and Raised in Waltham, MA. Never been out.",
-                "placesfuture": "Literally anywhere besides the places I'm in currently..."},
+                "placesfuture": "Literally anywhere besides the place I'm in currently..."},
             {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
                 "username":"charlie","password":"charlie", "roles": ["faculty"],
                 "email": "charlie@charlie.como", "age": "52", "aboutme": "Lecturer",
