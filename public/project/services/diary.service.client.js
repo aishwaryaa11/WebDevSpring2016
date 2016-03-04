@@ -26,7 +26,7 @@
         function createDiaryForUser(userId, diary, callback) {
             var newD = {
                 _id: (new Date).getTime(),
-                title: form.title,
+                title: diary.title,
                 userId: userId
             };
 
