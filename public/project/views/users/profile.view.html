@@ -2,7 +2,7 @@
     <h1 class="page-header">Profile</h1>
     <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
     <div ng-show="error" class="alert alert-success" role="alert">{{error}}</div>
-    <form class="form-horizontal col-sm-10">
+    <form class="form-horizontal col-sm-8">
         <div class="form-group">
             <label for="inputUsername" class="col-sm-2 control-label">Username:</label>
             <div class="col-sm-6">
@@ -10,8 +10,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword" class="col-sm-2 control-label">Password:</label>
-            <div class="col-sm-6">
+            <label for="inputPassword" class="col-sm-1 control-label">Password:</label>
+            <div class="col-sm-4">
                 <input type="password" class="form-control" id="inputPassword" placeholder="{{currentUser.password}}" ng-model="currentUser.password">
             </div>
         </div>
