@@ -1,9 +1,5 @@
 <div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="DiaryController">
     <h1 class="page-header">Diaries</h1>
-    <!--<ul class="nav nav-tabs">-->
-        <!--<li role="presentation" class="active"><a href="#/diary">Diary</a></li>-->
-        <!--<li role="presentation"><a href="#/diary-expand">Full View</a></li>-->
-    <!--</ul>-->
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -12,7 +8,7 @@
                 <th><i class="fa fa-sort-desc"><label>Action</label></i></th>
             </tr>
             <tr>
-                <td><input ng-model="form.title" class="form-control ng-pristine ng-valid ng-touched" placeholder="name"></td>
+                <td><input ng-model="form.title" class="form-control ng-pristine ng-valid ng-touched" placeholder="Title"></td>
                 <td>
                     <div>
                         <button ng-click="addD(form)" class="btn btn-primary pull-middle">
@@ -30,9 +26,9 @@
                         <button ng-click="deleteD($index)" class="btn btn-primary pull-middle">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
-                        <button ng-click="selectD($index)" class="btn btn-primary pull-middle">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
+                        <!--<button ng-click="selectD($index)" class="btn btn-primary pull-middle">-->
+                            <!--<span class="glyphicon glyphicon-pencil"></span>-->
+                        <!--</button>-->
                     </div>
                 </td>
             </tr>

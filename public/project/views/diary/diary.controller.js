@@ -36,6 +36,8 @@
             $scope.d = {
                 _id: d._id,
                 title: d.title,
+                notes: d.notes,
+                text: d.text,
                 userId: d.userId
             };
         }

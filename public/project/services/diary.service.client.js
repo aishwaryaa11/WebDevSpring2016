@@ -6,9 +6,9 @@
     function diaryService() {
 
         var diaries = [
-            {"_id": "000", "title": "Contacts", "userId": 123},
-            {"_id": "010", "title": "ToDo",     "userId": 123},
-            {"_id": "020", "title": "CDs",      "userId": 234}
+            {"_id": "000", "title": "Contacts", "notes": "Spring Break, PR", "text": "LOL", "userId": 123},
+            {"_id": "010", "title": "ToDo",  "text": "Went to Rebeccas today...",   "userId": 123},
+            {"_id": "020", "title": "CDs", "notes": "christmassssssss, #cray",  "userId": 234}
         ];
 
 
@@ -27,6 +27,8 @@
             var newD = {
                 _id: (new Date).getTime(),
                 title: diary.title,
+                notes: diary.notes,
+                text: diary.text,
                 userId: userId
             };
 
@@ -72,6 +74,8 @@
             var dTemp = findDiaryById(DId);
             if (dTemp != null) {
                 dTemp.title = newD.title;
+                dTemp.notes = newD.notes;
+                dTemp.text = newD.text;
                 dTemp.userId = newD.userId;
                 return dTemp;
             } else {
