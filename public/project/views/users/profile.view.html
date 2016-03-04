@@ -45,24 +45,17 @@
                 <input class="form-control" id="inputLocation" placeholder="{{currentUser.location}}" ng-model="currentUser.location">
             </div>
         </div>
-        <div class="btn-group">
+        <div class="form-group">
             <label for="inputGender" class="col-sm-2 control-label">Gender:</label>
-            <button type="button" class="btn btn-default">Male</button>
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="caret"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
             <div class="col-sm-6">
-                <ul class="dropdown-menu" id="inputGender" placeholder="{{currentUser.gender}}" ng-model="currentUser.gender">
-                    <li><a href="#/profile">Female</a></li>
-                </ul>
+                <input class="form-control" id="inputGender" placeholder="{{currentUser.gender}}" ng-model="currentUser.gender">
             </div>
         </div>
-    </form>
-    <form class="form-horizontal col-sm-10">
-        <label for="aboutme" class="col-sm-2 control-label">About Me:</label>
-        <textarea name="paragraph_text" cols="50" rows="10" id="aboutme" placeholder="{{currentUser.aboutme}}" ng-model="currentUser.aboutme">
-        </textarea>
+        <div class="form-group">
+            <label for="aboutme" class="col-sm-2 control-label">About Me:</label>
+            <textarea name="paragraph_text" cols="50" rows="10" id="aboutme" placeholder="{{currentUser.aboutme}}" ng-model="currentUser.aboutme">
+            </textarea>
+        </div>
     </form>
     <form class="form-horizontal col-sm-10">
         <label for="placesbeen" class="col-sm-2 control-label">Places I've been to:</label>
