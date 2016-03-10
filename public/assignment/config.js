@@ -28,7 +28,7 @@
                 controller: "FormController"
             })
             .when("/form-fields", {
-                templateUrl: "views/forms/form-fields.view.html"
+                templateUrl: "views/forms/fields.view.html"
             })
             .otherwise("/home")
     }
