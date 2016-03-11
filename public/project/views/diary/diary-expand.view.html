@@ -9,7 +9,7 @@
                 <input class="form-control" id="inputNotes" placeholder="{{currentDiary.notes}}" ng-model="currentDiary.notes">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
             <label for="text" class="col-sm-2 control-label">Thoughts:</label>
             <div class="col-sm-offset-2 col-sm-10">
                 <textarea name="paragraph_text" cols="100" rows="100" id="text" placeholder="{{currentDiary.text}}" ng-model="currentDiary.text"></textarea>
@@ -18,7 +18,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <form>
-                    <button type="submit" class="btn btn-primary" ng-click="updateD({{currentDiary}})">Update</button>
+                    <button type="submit" class="btn btn-primary" ng-click="updateD(currentDiary)">Update</button>
                 </form>
             </div>
         </div>
