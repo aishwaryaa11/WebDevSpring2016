@@ -26,7 +26,7 @@
 
         function deleteP(index) {
             selectedPId = $scope.photos[index]._id;
-            PhotoService.deletePhotosById(selectedPId);
+            PhotoService.deletePhotoById(selectedPId);
             $scope.photos.splice(index, 1);
         }
 
