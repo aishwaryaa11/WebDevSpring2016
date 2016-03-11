@@ -35,7 +35,7 @@
         function deleteU(index) {
             selectedUId = $scope.users[index]._id;
             UserService.deleteUserById(selectedUId);
-            $scope.users.splice(index, 1);
+            //$scope.users.splice(index, 1);
         }
 
         function selectU(index) {
