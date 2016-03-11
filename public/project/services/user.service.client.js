@@ -102,7 +102,17 @@
             var newUser = {
                 _id: (new Date).getTime(),
                 username: user.username,
-                password: user.password
+                password: user.password,
+                firstName: "",
+                lastName: "",
+                roles: "",
+                email: "",
+                age: "",
+                location: "",
+                gender: "",
+                aboutme: "",
+                placesbeen: "",
+                placesfuture: ""
             };
 
             users.push(newUser);

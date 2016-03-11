@@ -17,7 +17,7 @@
         var selectedUId = null;
 
         function addU(u) {
-            if (u.username != "") {
+            if (typeof u !== "undefined" && u.username != "") {
                 var newU = UserService.createUserAdmin(u);
                 $scope.users.push(newU);
             }
