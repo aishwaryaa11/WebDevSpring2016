@@ -34,8 +34,10 @@
             findUserByUsername: findUserByUsername,
             findAllUsers: findAllUsers,
             createUser: createUser,
+            createUserAdmin: createUserAdmin,
             deleteUserById: deleteUserById,
-            updateUser: updateUser
+            updateUser: updateUser,
+            updateUserAdmin: updateUserAdmin
         };
 
         return service;
@@ -95,6 +97,18 @@
             return newUser;
         }
 
+
+        function createUserAdmin(user, callback) {
+            var newUser = {
+                _id: (new Date).getTime(),
+                username: user.username,
+                password: user.password
+            };
+
+            users.push(newUser);
+            return newUser;
+        }
+
         function deleteUserById(userId, callback) {
             var user = findUserById(userId);
             if (user != null) {
@@ -119,6 +133,17 @@
                 userTemp.aboutme = user.aboutme;
                 userTemp.placesbeen = user.placesbeen;
                 userTemp.placesfuture = user.placesfuture;
+                return userTemp;
+            } else {
+                return null;
+            }
+        }
+
+        function updateUserAdmin(userId, user, callback) {
+            var userTemp = findUserById(userId);
+            if (userTemp != null) {
+                userTemp.password = user.password;
+                userTemp.username = user.username;
                 return userTemp;
             } else {
                 return null;

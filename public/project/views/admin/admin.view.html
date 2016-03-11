@@ -11,7 +11,7 @@
             </tr>
             <tr>
                 <td><input ng-model="form.username" class="form-control ng-pristine ng-valid ng-touched" placeholder="username"></td>
-                <td><input class="form-control ng-pristine ng-valid ng-touched" placeholder="password"></td>
+                <td><input ng-model="form.password" class="form-control ng-pristine ng-valid ng-touched" placeholder="password"></td>
                 <td>
                     <div>
                         <button ng-click="addU(form)" class="btn btn-primary">
@@ -25,43 +25,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>alice</td>
-                <td></td>
+            <tr ng-repeat="form in users">
                 <td>
                     <div>
-                        <button class="btn btn-primary">
+                        <button ng-click="deleteU($index)" class="btn btn-primary pull-middle">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
-                        <button class="btn btn-primary">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>bob</td>
-                <td></td>
-                <td>
-                    <div>
-                        <button class="btn btn-primary">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                        <button class="btn btn-primary">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>charlie</td>
-                <td></td>
-                <td>
-                    <div>
-                        <button class="btn btn-primary">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                        <button class="btn btn-primary">
+                        <button ng-click="selectU($index)" class="btn btn-primary pull-middle">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                     </div>

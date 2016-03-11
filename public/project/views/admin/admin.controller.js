@@ -18,13 +18,13 @@
 
         function addU(u) {
             if (typeof u !== "undefined" && u.username != "") {
-                var newU = UserService.createUser(u);
+                var newU = UserService.createUserAdmin(u);
                 $scope.users.push(newU);
             }
         }
 
         function updateU(u) {
-            var newU = UserService.updateUser(selectedUId, u);
+            var newU = UserService.updateUserAdmin(selectedUId, u);
             if (newU) {
                 $scope.message = "Successfully updated User";
             } else {
