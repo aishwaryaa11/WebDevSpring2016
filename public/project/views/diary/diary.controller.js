@@ -6,6 +6,9 @@
     function diaryController($scope, DiaryService, $rootScope) {
         $scope.diaries = DiaryService.findAllDiariesForUser($rootScope.currentUser._id);
 
+        $scope.message = null;
+        $scope.error = null;
+
         $scope.addD = addD;
         $scope.updateD = updateD;
         $scope.deleteD = deleteD;
