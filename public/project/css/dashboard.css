@@ -110,9 +110,6 @@ body {
   margin-left: -.9375rem;
 }
 
-*, ::after, ::before {
-    box-sizing: inherit;
-}
 
 .card {
     float: left;
