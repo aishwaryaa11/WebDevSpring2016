@@ -9,39 +9,44 @@
                 <input class="form-control" id="inputNotes" placeholder="{{currentDiary.notes}}" ng-model="currentDiary.notes">
             </div>
         </div>
-        <div class="row">
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <form>
-                    <button type="submit" class="btn btn-primary" ng-click="update(currentDiary)">Update</button>
-                </form>
+
+        <div class="btn-group inline pull-left">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <form>
+                        <button type="submit" class="btn btn-primary" ng-click="update(currentDiary)">Update</button>
+                    </form>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-10">
+                    <form>
+                        <button type="submit" class="btn btn-primary" ng-click="delete(currentDiary)">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-10">
-                <form>
-                    <button type="submit" class="btn btn-primary" ng-click="delete(currentDiary)">Delete</button>
-                </form>
-            </div>
-        </div>
+
         <div class="form-group">
             <label for="text" class="col-sm-2 control-label">Thoughts:</label>
             <div class="col-sm-6">
                 <textarea name="paragraph_text" cols="100" rows="100" id="text" placeholder="{{currentDiary.text}}" ng-model="currentDiary.text"></textarea>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-sm-offset-2 col-sm-10">
-                <form>
-                    <button type="submit" class="btn btn-primary" ng-click="update(currentDiary)">Update</button>
-                </form>
-            </div>
-            <div class="col-sm-offset-2 col-sm-10">
-                <form>
-                    <button type="submit" class="btn btn-primary" ng-click="delete(currentDiary)">Delete</button>
-                </form>
-            </div>
-        </div>
     </form>
+</div>
+
+<div class="container-fluid">
+    <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-10">
+            <form>
+                <button type="submit" class="btn btn-primary" ng-click="update(currentDiary)">Update</button>
+            </form>
+        </div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <form>
+                <button type="submit" class="btn btn-primary" ng-click="delete(currentDiary)">Delete</button>
+            </form>
+        </div>
+    </div>
 </div>
