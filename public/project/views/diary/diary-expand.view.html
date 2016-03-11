@@ -15,15 +15,10 @@
                 <textarea name="paragraph_text" cols="100" rows="100" id="text" placeholder="{{currentDiary.text}}" ng-model="currentDiary.text"></textarea>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <form>
-                    <button type="submit" class="btn btn-primary" ng-click="update(currentDiary)">Update</button>
-                </form>
-            </div>
-            <div class="col-sm-offset-2 col-sm-10">
-                <form>
-                    <button type="submit" class="btn btn-primary" ng-click="delete(currentDiary)">Delete</button>
+                    <button type="submit" class="btn btn-primary" ng-click="updateD(currentDiary)">Update</button>
                 </form>
             </div>
         </div>

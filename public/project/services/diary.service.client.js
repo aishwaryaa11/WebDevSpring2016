@@ -7,7 +7,7 @@
 
         var diaries = [
             {"_id": "000", "title": "Contacts", "notes": "Spring Break, PR", "text": "LOL", "userId": 123},
-            {"_id": "010", "title": "ToDo",  "text": "Went to Rebeccas today...",   "userId": 123},
+            {"_id": "010", "title": "ToDo",  "text": "Went to Rebeccas today...",   "userId": 121},
             {"_id": "020", "title": "CDs", "notes": "christmassssssss, #cray",  "userId": 234}
         ];
 
