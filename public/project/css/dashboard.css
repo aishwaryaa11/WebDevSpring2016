@@ -110,6 +110,11 @@ body {
   margin-left: -.9375rem;
 }
 
+*, ::after, ::before {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
 .card {
     float: left;
     width: 33.333%;
