@@ -102,7 +102,7 @@
             var newUser = {
                 _id: (new Date).getTime(),
                 username: user.username,
-                password: user.password,
+                password: "",
                 firstName: "",
                 lastName: "",
                 roles: "",
@@ -152,7 +152,6 @@
         function updateUserAdmin(userId, user, callback) {
             var userTemp = findUserById(userId);
             if (userTemp != null) {
-                userTemp.password = user.password;
                 userTemp.username = user.username;
                 return userTemp;
             } else {
