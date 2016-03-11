@@ -6,12 +6,10 @@
             <thead>
             <tr>
                 <th><i class="fa fa-sort-desc">Username</i></th>
-                <th><i class="fa fa-sort-desc">Password</i></th>
                 <th><i class="fa fa-sort-desc">Action</i></th>
             </tr>
             <tr>
                 <td><input ng-model="form.username" class="form-control ng-pristine ng-valid ng-touched" placeholder="username"></td>
-                <td><input class="form-control ng-pristine ng-valid ng-touched" placeholder="password"></td>
                 <td>
                     <div>
                         <button ng-click="addU(form)" class="btn btn-primary">
@@ -27,7 +25,6 @@
             <tbody>
             <tr ng-repeat="form in users">
                 <td><a href="#/admin">{{form.username}}</a></td>
-                <td><a></a></td>
                 <td>
                     <div>
                         <button ng-click="deleteU($index)" class="btn btn-primary pull-middle">
