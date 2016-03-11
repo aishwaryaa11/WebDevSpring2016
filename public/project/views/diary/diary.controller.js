@@ -22,6 +22,12 @@
 
         function updateD(d) {
             var newD = DiaryService.updateDiaryById(selectedDId, d);
+            if (newD) {
+                $scope.message = "Successfully updated Diary";
+                $rootScope.diaries = $scope.diaries;
+            } else {
+                $scope.message = "Unable to update Diary. Try again.";
+            }
         }
 
         function deleteD(index) {
