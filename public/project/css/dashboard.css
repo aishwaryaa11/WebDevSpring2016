@@ -104,6 +104,12 @@ body {
   border-radius: 50%;
 }
 
+.container {
+    padding-right: .9375rem;
+    padding-left: .9375rem;
+    margin-right: auto;
+    margin-left: auto;
+}
 
 .row {
   margin-right: -.9375rem;
@@ -122,8 +128,6 @@ body {
 .card {
     position: relative;
     display: block;
-    margin-bottom: .75rem;
     background-color: #fff;
-    border: 1px solid #e5e5e5;
     border-radius: .25rem;
 }
