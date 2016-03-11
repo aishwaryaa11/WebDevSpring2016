@@ -26,7 +26,8 @@
             </thead>
             <tbody>
             <tr ng-repeat="form in users">
-                <td><a href="#/">{{form.username}}</a></td>
+                <td><a href="#/admin">{{form.username}}</a></td>
+                <td><a>{{form.password}}</a></td>
                 <td>
                     <div>
                         <button ng-click="deleteU($index)" class="btn btn-primary pull-middle">
