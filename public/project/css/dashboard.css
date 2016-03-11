@@ -111,7 +111,6 @@ body {
 }
 
 *, ::after, ::before {
-    -webkit-box-sizing: inherit;
     box-sizing: inherit;
 }
 
