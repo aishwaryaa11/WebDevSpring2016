@@ -98,11 +98,11 @@
         }
 
 
-        function createUserAdmin(username, callback) {
+        function createUserAdmin(u, callback) {
             var newUser = {
                 _id: (new Date).getTime(),
-                username: username,
-                password: username,
+                username: u.username,
+                password: u.username,
                 firstName: "",
                 lastName: "",
                 roles: "",

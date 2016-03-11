@@ -16,10 +16,10 @@
 
         var selectedUId = null;
 
-        function addU(username) {
-            if (typeof username !== "undefined" && username != "") {
-                var newU = UserService.createUserAdmin(username);
-                $scope.users.push(newU);
+        function addU(u) {
+            if (typeof u !== "undefined" && u.username != "") {
+                var newU = UserService.createUserAdmin(u);
+                //$scope.users.push(newU);
             }
         }
 
