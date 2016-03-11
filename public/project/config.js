@@ -34,6 +34,9 @@
                 templateUrl: "views/photos/photos.view.html",
                 controller: "PhotosController"
             })
+            .when("/photos-expand", {
+                templateUrl: "views/photos/photos-expand.view.html"
+            })
             .otherwise("/home")
     }
 })();

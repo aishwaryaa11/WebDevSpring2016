@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="DiaryController">
+    <h1 class="page-header">Photos</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><i class="fa fa-sort-desc"><label>Album</label></i></th>
+                <th><i class="fa fa-sort-desc"><label>Action</label></i></th>
+            </tr>
+            <tr>
+                <td><input ng-model="form.title" class="form-control ng-pristine ng-valid ng-touched" placeholder="Title"></td>
+                <td>
+                    <div>
+                        <button ng-click="addP(form)" class="btn btn-primary pull-middle">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        <button ng-click="updateP(form)" class="btn btn-primary pull-middle">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="form in photos">
+                <td><a href="#/photos-expand">{{form.title}}</a></td>
+                <td>
+                    <div>
+                        <button ng-click="deleteP($index)" class="btn btn-primary pull-middle">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                        <button ng-click="selectP($index)" class="btn btn-primary pull-middle">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
