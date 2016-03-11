@@ -102,7 +102,7 @@
             var newUser = {
                 _id: (new Date).getTime(),
                 username: user.username,
-                password: "",
+                password: user.username,
                 firstName: "",
                 lastName: "",
                 roles: "",
