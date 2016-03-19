@@ -28,6 +28,7 @@
             })
             .when("/home", {
                 templateUrl: "views/home/home.view.html",
+                controllerAs: "model",
                 resolve: {
                     getLoggedIn: getLoggedIn
                 }
