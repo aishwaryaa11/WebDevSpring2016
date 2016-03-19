@@ -41,7 +41,7 @@
                 }
             })
             .when("/form/:formId/fields", {
-                templateUrl: "views/forms/form-fields.view.html",
+                templateUrl: "views/forms/fields.view.html",
                 controller: "FieldsController",
                 controllerAs: "model",
                 resolve: {
