@@ -1,7 +1,7 @@
 (function(){
     angular
         .module("Travelogue")
-        .controller("RegisterController", registerController);
+        .controller("RegisterTController", registerController);
 
     function registerController($scope, UserService, $location, $rootScope) {
         $scope.message = null;

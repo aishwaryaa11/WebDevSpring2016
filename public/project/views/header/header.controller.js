@@ -1,7 +1,7 @@
 (function(){
     angular
         .module("Travelogue")
-        .controller("HeaderController", headerController);
+        .controller("HeaderTController", headerController);
 
     function headerController($location, $scope, $rootScope) {
         $scope.$location = $location;

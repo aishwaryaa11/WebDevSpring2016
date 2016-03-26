@@ -1,7 +1,7 @@
 (function(){
     angular
         .module("Travelogue")
-        .controller("ProfileController", profileController);
+        .controller("ProfileTController", profileController);
 
     function profileController($scope, $rootScope, UserService, $location) {
         $scope.message = null;

@@ -1,7 +1,7 @@
 (function(){
     angular
         .module("Travelogue")
-        .controller("AdminController", adminController);
+        .controller("AdminTController", adminController);
 
     function adminController($scope, UserService, $rootScope) {
         $scope.users = UserService.findAllUsers();

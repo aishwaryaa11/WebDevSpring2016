@@ -1,7 +1,7 @@
 (function(){
     angular
         .module("Travelogue")
-        .controller("LoginController", loginController);
+        .controller("LoginTController", loginController);
 
     function loginController($scope, UserService, $rootScope, $location) {
         $scope.message = null;

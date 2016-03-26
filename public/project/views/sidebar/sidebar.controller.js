@@ -1,7 +1,7 @@
 (function(){
     angular
         .module("Travelogue")
-        .controller("SidebarController", sidebarController);
+        .controller("SidebarTController", sidebarController);
 
     function sidebarController($rootScope) {
 
