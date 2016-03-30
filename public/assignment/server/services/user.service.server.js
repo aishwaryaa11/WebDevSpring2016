@@ -1,13 +1,29 @@
 module.exports = function(app, userModel) {
     app.post("/api/assignment/user", createUser);
-    app.get("/api/assignment/user", findAllUsers);
+    app.get("/api/assignment/user", findUsers);
+    //app.get("/api/assignment/user", findAllUsers);
+    //app.get("/api/assignment/user?username=:username&password=:password", findUserByCredential);
     app.get("/api/assignment/user/:username", findUserByUsername);
-    app.get("/api/assignment/user?username=:username&password=:password", findUserByCredential);
     app.put("/api/assignment/user/:id", updateUserById);
     app.delete("/api/assignment/user/:id", deleteUserById);
     app.post("/api/assignment/login", login);
     app.post("/api/assignment/logout", logout);
     app.get("/api/assignment/loggedin", loggedin);
+
+    function findUsers(req, res) {
+        var username = req.params.username;
+        var password = req.params.password;
+        var credentital = {
+            username: username,
+            password: password
+        };
+        if(username && password) {
+            var user = userModel.findUserByCredentials(credentital);
+            res.json(user);
+        } else {
+            res.json(userModel.findAllUsers());
+        }
+    }
 
     function createUser(req, res) {
         var user = req.body;
