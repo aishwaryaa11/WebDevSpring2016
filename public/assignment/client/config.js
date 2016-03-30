@@ -48,7 +48,9 @@
                     checkLoggedIn: checkLoggedIn
                 }
             })
-            .otherwise("/home")
+            .otherwise({
+                redirectTo: "/home"
+            })
     }
 
     function getLoggedIn(UserService, $q) {
