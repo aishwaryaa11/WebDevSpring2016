@@ -1,3 +1,4 @@
+"use strict";
 (function(){
     angular
         .module("FormBuilderApp")
@@ -20,14 +21,13 @@
                     var userTemp = response.data;
                     if (userTemp) {
                         vm.currentUser = userTemp;
-                        FormService
-                            .findAllFormsForUser(vm.currentUser._id)
-                            .then(function(response) {
-                                var forms = response.data;
-                                if (forms) {
-                                    vm.forms = forms;
-                                }
-                            });
+                        return FormService.findAllFormsForUser(vm.currentUser._id);
+                    }
+                })
+                .then(function(response) {
+                    var forms = response.data;
+                    if (forms) {
+                        vm.forms = forms;
                     }
                 });
         }
@@ -52,16 +52,15 @@
             FormService
                 .updateFormById(selectedFormId, form)
                 .then(function(response) {
+                    var formTemp = response.data;
+                    if (formTemp) {
+                        return FormService.findAllFormsForUser(vm.currentUser._id);
+                    }
+                })
+                .then(function(response) {
                     var forms = response.data;
                     if (forms) {
-                        FormService
-                            .findAllFormsForUser(vm.currentUser._id)
-                            .then(function(response) {
-                                var forms = response.data;
-                                if (forms) {
-                                    vm.forms = forms;
-                                }
-                            });
+                        vm.forms = forms;
                     }
                 });
         }
@@ -71,16 +70,12 @@
             FormService
                 .deleteFormById(selectedFormId)
                 .then(function(response) {
+                    return FormService.findAllFormsForUser(vm.currentUser._id);
+                })
+                .then(function(response) {
                     var forms = response.data;
                     if (forms) {
-                        FormService
-                            .findAllFormsForUser(vm.currentUser._id)
-                            .then(function(response) {
-                                var forms = response.data;
-                                if (forms) {
-                                    vm.forms = forms;
-                                }
-                            });
+                        vm.forms = forms;
                     }
                 });
         }
@@ -95,7 +90,8 @@
                         vm.form = {
                             _id: formTemp._id,
                             title: formTemp.title,
-                            userId: formTemp.userId
+                            userId: formTemp.userId,
+                            fields: formTemp.fields
                         };
                     }
                 });

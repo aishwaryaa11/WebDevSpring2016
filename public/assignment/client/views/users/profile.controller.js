@@ -1,3 +1,4 @@
+"use strict";
 (function(){
     angular
         .module("FormBuilderApp")
@@ -16,6 +17,7 @@
                 .then(function(response) {
                     var currentUser = response.data;
                     if (currentUser) {
+                        UserService.setCurrentUser(currentUser);
                         vm.currentUser = currentUser;
                     }
                 });

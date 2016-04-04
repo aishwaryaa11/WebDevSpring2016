@@ -6,24 +6,24 @@
     function userService() {
         var users = [
             {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
-                "username":"alice",  "password":"alice",   "roles": ["student"],
+                "username":"alice",  "password":"alice",   "roles2": ["student"],
                 "email": "alice@alice.com", "age": "22", "aboutme": "Senior at Northeastern University",
                 "placesbeen": "New York, Philly, London",  "placesfuture": "Take me to Venice!"},
             {	"_id":234, "firstName":"Bob",              "lastName":"Hope",
-                "username":"bob",    "password":"bob",     "roles": ["admin"],
+                "username":"bob",    "password":"bob",     "roles2": ["admin"],
                 "email": "bob@bob.com", "age": "25", "aboutme": "I am awesome",
                 "placesbeen": "Born and Raised in Waltham, MA. Never been out.",
                 "placesfuture": "Literally anywhere besides the place I'm in currently..."},
             {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
-                "username":"charlie","password":"charlie", "roles": ["faculty"],
+                "username":"charlie","password":"charlie", "roles2": ["faculty"],
                 "email": "charlie@charlie.como", "age": "52", "aboutme": "Lecturer",
                 "placesbeen": "Chicago, San Francisco",  "placesfuture": "Nirvana"},
             {	"_id":456, "firstName":"Dan",              "lastName":"Craig",
-                "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"],
+                "username":"dan",    "password":"dan",     "roles2": ["faculty", "admin"],
                 "email": "dan@dan.com", "age": "30", "aboutme": "Senior at Northeastern University",
                 "placesbeen": "Every state in the country",  "placesfuture": "Venus"},
             {	"_id":567, "firstName":"Edward",           "lastName":"Norton",
-                "username":"ed",     "password":"ed",      "roles": ["student"],
+                "username":"ed",     "password":"ed",      "roles2": ["student"],
                 "email": "ed@ed.com", "age": "18", "aboutme": "Go Huskies!",
                 "placesbeen": "Canada",  "placesfuture": "Not Canada"}
         ];
@@ -83,7 +83,7 @@
                 password: user.password,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                roles: user.roles,
+                roles2: user.roles2,
                 email: user.email,
                 age: user.age,
                 location: user.location,
@@ -105,7 +105,7 @@
                 password: u.username,
                 firstName: "",
                 lastName: "",
-                roles: "",
+                roles2: "",
                 email: "",
                 age: "",
                 location: "",
@@ -135,7 +135,7 @@
                 userTemp.lastName = user.lastName;
                 userTemp.password = user.password;
                 userTemp.username = user.username;
-                userTemp.roles = user.roles;
+                userTemp.roles2 = user.roles2;
                 userTemp.email = user.email;
                 userTemp.age = user.age;
                 userTemp.location = user.location;

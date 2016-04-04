@@ -1,3 +1,4 @@
+"use strict";
 (function(){
     angular
         .module("FormBuilderApp")
@@ -24,11 +25,15 @@
                 }
             })
             .when("/admin", {
-                templateUrl: "views/admin/admin.view.html"
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController",
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn : checkLoggedIn
+                }
             })
             .when("/home", {
                 templateUrl: "views/home/home.view.html",
-                controllerAs: "model",
                 resolve: {
                     getLoggedIn: getLoggedIn
                 }
@@ -49,8 +54,11 @@
                     checkLoggedIn: checkLoggedIn
                 }
             })
-            .otherwise("/home")
+            .otherwise({
+                redirectTo: "/home"
+            })
     }
+
 
     function getLoggedIn(UserService, $q) {
         var deferred = $q.defer();
@@ -65,6 +73,8 @@
 
         return deferred.promise;
     }
+
+
 
     function checkLoggedIn(UserService, $q, $location) {
 

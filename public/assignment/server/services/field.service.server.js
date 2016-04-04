@@ -1,51 +1,77 @@
-module.exports = function (app, userModel, formModel) {
-    app.get("/api/assignment/form/:formId/field", findAllFieldsById);
-    app.get("/api/assignment/form/:formId/field/:fieldId", findFieldByFieldIdAndFormId);
-    app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldByFieldIdAndFormId);
-    app.post("/api/assignment/form/:formId/field", createFieldForForm);
-    app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldForForm);
-    app.put("/api/assignment/form/:formId/fields", updateFieldsForForm);
+module.exports = function(app, formModel) {
+    app.get("/api/assignment/form/:formId/field", fieldsForFormId);
+    app.get("/api/assignment/form/:formId/field/:fieldId", getFieldById);
+    app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldById);
+    app.post("/api/assignment/form/:formId/field", addFieldToForm);
+    app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldById);
 
-    function findAllFieldsById(req, res) {
+    function fieldsForFormId(req, res) {
         var formId = req.params.formId;
-        var fields = formModel.findAllFieldsById(formId);
-        res.json(fields);
+        formModel.findFieldsByFormId(formId)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
-    function findFieldByFieldIdAndFormId(req, res) {
+    function getFieldById(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        var field = formModel.findFieldByFieldIdAndFormId(formId, fieldId);
-        res.json(field);
+        formModel.findField(formId, fieldId)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
-    function deleteFieldByFieldIdAndFormId(req, res) {
+    function deleteFieldById(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        var field = formModel.deleteFieldByFieldIdAndFormId(formId, fieldId);
-        res.json(formModel.findAllFieldsById(formId));
+        formModel.deleteField(formId, fieldId)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
-    function createFieldForForm(req, res) {
-        var formId = req.params.formId;
+    function addFieldToForm(req, res) {
         var field = req.body;
-        var newField = formModel.createFieldForForm(formId, field);
-        res.json(formModel.findAllFieldsById(formId));
+        var formId = req.params.formId;
+        formModel.createField(formId, field)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
-    function updateFieldForForm(req, res) {
-        var formId = req.params.formId;
-        var fieldId = req.params.fieldId;
+    function updateFieldById(req, res) {
         var field = req.body;
-        var newField = formModel.updateFieldForForm(formId, fieldId, field);
-        res.json(formModel.findAllFieldsById(formId));
-    }
-
-    function updateFieldsForForm(req, res) {
+        var fieldId = req.params.fieldId;
         var formId = req.params.formId;
-        var fields = req.body;
-        var newFields = formModel.updateFieldsForForm(formId, fields);
-        res.json(formModel.findAllFieldsById(formId));
+        formModel.updateField(formId, field)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
-
 };

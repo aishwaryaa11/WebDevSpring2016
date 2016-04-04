@@ -1,3 +1,4 @@
+"use strict";
 (function() {
     angular
         .module("FormBuilderApp")
@@ -15,17 +16,14 @@
             updateUser: updateUser,
             setCurrentUser: setCurrentUser,
             logout: logout,
+            getProfile: getProfile,
             getCurrentUser: getCurrentUser
         };
 
         return service;
 
         function findUserByCredentials(username, password) {
-            var credentials = {
-                username: username,
-                password: password
-            };
-            return $http.post("/api/assignment/login", credentials);
+            return $http.get("/api/assignment/user?username=" + username + "&password=" + password);
         }
 
         function findUserById(userId) {
@@ -50,6 +48,10 @@
 
         function updateUser(userId, user) {
             return $http.put("/api/assignment/user/" + userId, user);
+        }
+
+        function getProfile() {
+            return $rootScope.currentUser;
         }
 
         function setCurrentUser(user) {

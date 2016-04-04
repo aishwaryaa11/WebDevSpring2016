@@ -116,3 +116,7 @@ a {
     right: 0;
   }
 }
+
+#myhandle {
+  cursor: move;
+}

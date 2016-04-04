@@ -1,3 +1,4 @@
+"use strict";
 (function(){
     angular
         .module("FormBuilderApp")
@@ -49,7 +50,7 @@
                                 var newUser = response.data;
                                 if (newUser) {
                                     UserService.setCurrentUser(newUser);
-                                    $location.url("/profile");
+                                    $location.path("/profile");
                                 }
                             });
                     }

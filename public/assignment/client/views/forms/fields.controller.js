@@ -1,220 +1,147 @@
+"use strict";
 (function() {
     angular
         .module("FormBuilderApp")
-        .controller("FieldsController", fieldsController)
-        .controller("DialogController", dialogController);
+        .controller("FieldsController", fieldsController);
 
-    function fieldsController($routeParams, $uibModal, FieldsService) {
+    function fieldsController(FieldService, FormService, $routeParams) {
         var vm = this;
-
-        var formId = null;
-
-        vm.addField = addField;
-        vm.removeField = removeField;
+        vm.currentField = null;
+        vm.eField = null;
         vm.editField = editField;
-        vm.fields = null;
+        vm.commitEdit = commitEdit;
+        vm.deleteField = deleteField;
+        vm.addField = addField;
+        vm.reorder = reorder;
+        vm.options =
+            [
+                'Single Line Text Field',
+                'Multi Line Text Field',
+                'Date Field',
+                'Dropdown Field',
+                'Checkboxes Field',
+                'Radio Buttons Field'
+            ];
+
+        var formId = "000";
+        if ($routeParams.formId) {
+            formId = $routeParams.formId;
+        }
+
+        vm.sortableOptions = {
+            orderChanged: function(e) {
+                vm.form.fields = vm.fields;
+                FormService
+                    .updateFormById(formId, vm.form)
+                    .then(init);
+            }
+        };
+
+        var optionMap =
+            [
+                {key: "Single Line Text Field", value: "TEXT"},
+                {key: "Multi Line Text Field", value: "TEXTAREA"},
+                {key: "Date Field", value: "DATE"},
+                {key: "Dropdown Field", value: "OPTIONS"},
+                {key: "Checkboxes Field", value: "CHECKBOXES"},
+                {key: "Radio Buttons Field", value: "RADIOS"}
+            ];
 
         function init() {
-            formId = $routeParams.formId;
-            FieldsService
+            FieldService
                 .getFieldsForForm(formId)
-                .then(function(response) {
-                    var fields = response.data;
-                    if (fields) {
-                        vm.fields = fields;
-                    }
+                .then(function (response) {
+                    vm.fields = response.data;
+                    vm.eField = null;
                 });
+            FormService
+                .findFormById(formId)
+                .then(function (response)
+                {
+                    vm.form = response.data;
+                })
         }
+
         init();
+
+        function sendEdit(field) {
+            vm.currentField = null;
+            FieldService
+                .updateField(formId, field._id, field)
+                .then(init);
+        }
+
+        function reorder() {
+            vm.form.fields = vm.fields;
+            FormService
+                .updateFormById(formId, vm.form)
+                .then(init);
+        }
+
+        function deleteField(field) {
+            vm.currentField = null;
+            FieldService
+                .deleteFieldFromForm(formId, field._id)
+                .then(init);
+        }
+
+        function translateFieldType(fieldType) {
+            for (var k in optionMap) {
+                console.log(optionMap[k].key + " " + optionMap[k].value);
+                if (optionMap[k].key == fieldType){
+                    return optionMap[k].value;
+                }
+            }
+        }
 
         function addField(fieldType) {
-            if (typeof fieldType == "undefined") {
-                return ;
-            }
-            var fieldTemplates = {
-                "slt": {
-                    "id": null,
-                    "label": "New Text Field",
-                    "type": "TEXT",
-                    "placeholder": "New Field"
-                },
-                "mlt": {
-                    "id": null,
-                    "label": "New Text Field",
-                    "type": "TEXTAREA",
-                    "placeholder": "New Field"
-                },
-                "date": {
-                    "id": null,
-                    "label": "New Date Field",
-                    "type": "DATE"
-                },
-                "dropdown": {
-                    "id": null,
-                    "label": "New Dropdown",
-                    "type": "OPTIONS",
-                    "options": [{
-                        "label": "Option 1",
-                        "value": "OPTION_1"
-                    }, {
-                        "label": "Option 2",
-                        "value": "OPTION_2"
-                    }, {
-                        "label": "Option 3",
-                        "value": "OPTION_3"
-                    }]
-                },
-                "checkbox": {
-                    "id": null,
-                    "label": "New Checkboxes",
-                    "type": "CHECKBOXES",
-                    "options": [{
-                        "label": "Option A",
-                        "value": "OPTION_A"
-                    }, {
-                        "label": "Option B",
-                        "value": "OPTION_B"
-                    }, {
-                        "label": "Option C",
-                        "value": "OPTION_C"
-                    }]
-                },
-                "radiobutton": {
-                    "id": null,
-                    "label": "New Radio Buttons",
-                    "type": "RADIOS",
-                    "options": [{
-                        "label": "Option X",
-                        "value": "OPTION_X"
-                    }, {
-                        "label": "Option Y",
-                        "value": "OPTION_Y"
-                    }, {
-                        "label": "Option Z",
-                        "value": "OPTION_Z"
-                    }]
-                }
-            };
-
-            FieldsService
-                .createFieldForForm(formId, fieldTemplates[fieldType])
-                .then(function(response) {
-                    var fields = response.data;
-                    if (fields) {
-                        vm.fields = fields;
-                    }
-                });
+            var field = {"label": "", "type": translateFieldType(fieldType), "placeholder": "", "options": null};
+            console.log(field);
+            FieldService
+                .createFieldForForm(formId, field)
+                .then(init);
         }
 
-        function removeField(field) {
-            FieldsService
-                .deleteFieldFromForm(formId, field._id)
-                .then(function(response) {
-                    var fields = response.data;
-                    if (fields) {
-                        vm.fields = fields;
-                    }
-                });
-        }
 
         function editField(field) {
-            var modalInstance = $uibModal.open({
-                templateUrl: "views/forms/dialog.view.html",
-                controller: "DialogController",
-                controllerAs: "model",
-                resolve: {
-                    type: function () {
-                        return field.type;
-                    }
-                }
-            });
+            vm.eField = field;
 
-            modalInstance.result.then(function (newField) {
-                FieldsService
-                    .updateField(formId, field._id, newField)
-                    .then(function (response) {
-                        var fields = response.data;
-                        if (response.data) {
-                            vm.fields = fields;
-                        }
+            var isOption = !(vm.eField.type === 'TEXT' || vm.eField.type === 'TEXTAREA');
+
+            if (isOption) {
+                var optionList = [];
+                var ol = vm.eField.options;
+                for (var o in ol) {
+                    optionList.push(ol[o].label + ":" + ol[o].value)
+                }
+                vm.optionText = optionList.join("\n");
+            }
+        }
+
+        function commitEdit(field) {
+
+            vm.eField = field;
+
+            var isOption = !(field.type == 'TEXT' || field.type == 'TEXTAREA');
+
+            var optionArray = [];
+
+            if (isOption) {
+                var oa = vm.optionText.split("\n");
+                for (var o in oa) {
+                    var a = oa[o].split(":");
+                    optionArray.push({
+                        label: a[0],
+                        value: a[1]
                     });
-            });
-        }
-    }
-
-    function dialogController($uibModalInstance, type) {
-        var vm = this;
-
-        vm.ok = ok;
-        vm.cancel = cancel;
-        vm.message = null;
-
-        function init() {
-            vm.type = type;
-        }
-        init();
-
-        function ok(field) {
-            if (typeof field == "undefined") {
-                vm.message = "Please enter something!";
-                return ;
-            }
-            if (!field.label) {
-                vm.message = "The label can not be empty!";
-                return ;
-            }
-
-            if ((type == "TEXT" || type == "TEXTAREA") && !field.placeholder) {
-                vm.message = "The placeholder can not be empty";
-                return ;
-            }
-
-            if ((type == "OPTIONS" || type == "CHECKBOXES" || type == "RADIOS") && !field.options) {
-                vm.message = "The options can not be empty";
-                return ;
-            }
-
-            var newField = {
-                "label" : field.label
-            };
-
-            if (field.placeholder) {
-                newField = {
-                    "label" : field.label,
-                    "placeholder": field.placeholder
-                };
-            }
-
-            if (field.options) {
-                var optionsTemp = [];
-                var info = field.options;
-                var optionArr = info.split("\n");
-                for (var o in optionArr) {
-                    var pair = optionArr[o].split(":");
-                    if (pair.length == 2) {
-                        var option = {
-                            "label": pair[0],
-                            "value": pair[1]
-                        };
-                        optionsTemp.push(option);
-                    } else {
-                        vm.message = "Please follow input format as label:value!";
-                        return ;
-                    }
                 }
-
-                newField = {
-                    "label" : field.label,
-                    "options": optionsTemp
-                };
+                vm.eField.options = optionArray;
             }
-
-            $uibModalInstance.close(newField);
-        }
-
-        function cancel() {
-            $uibModalInstance.dismiss("cancel");
+            else {
+            }
+            FieldService
+                .updateField(formId, vm.eField._id, vm.eField)
+                .then(init);
         }
     }
-
 })();

@@ -1,3 +1,4 @@
+"use strict";
 (function(){
     angular
         .module("FormBuilderApp")
@@ -26,9 +27,9 @@
                     if (userTemp) {
                         UserService.setCurrentUser(userTemp);
                         if (userTemp.roles != null && userTemp.roles.indexOf("admin") >= 0) {
-                            $location.url("/admin");
+                            $location.path("/admin");
                         } else {
-                            $location.url("/profile");
+                            $location.path("/profile");
                         }
                     } else {
                         vm.message = "User does not exist";
