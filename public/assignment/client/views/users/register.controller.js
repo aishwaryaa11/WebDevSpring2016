@@ -10,10 +10,10 @@
         vm.message = null;
         vm.register = register;
 
-        //function init() {
-        //
-        //}
-        //init();
+        function init() {
+
+        }
+        init();
 
         function register(user) {
             if (user == null) {
@@ -37,23 +37,33 @@
                 return ;
             }
 
+            //UserService
+            //    .findUserByUsername(user.username)
+            //    .then(function (response) {
+            //        var userTemp = response.data;
+            //        if (userTemp != null) {
+            //            vm.message = "User already exists";
+            //        } else {
+            //            UserService
+            //                .createUser(user)
+            //                .then(function(response) {
+            //                    var newUser = response.data;
+            //                    if (newUser) {
+            //                        UserService.setCurrentUser(newUser);
+            //                        $location.path("/profile");
+            //                    }
+            //                });
+            //        }
+            //    });
+
+
             UserService
-                .findUserByUsername(user.username)
-                .then(function (response) {
-                    var userTemp = response.data;
-                    console.log("came in");
-                    if (userTemp != null) {
-                        vm.message = "User already exists";
-                    } else {
-                        UserService
-                            .createUser(user)
-                            .then(function(response) {
-                                var newUser = response.data;
-                                if (newUser) {
-                                    UserService.setCurrentUser(newUser);
-                                    $location.path("/profile");
-                                }
-                            });
+                .createUser(user)
+                .then(function(response) {
+                    var newUser = response.data;
+                    if (newUser) {
+                        UserService.setCurrentUser(newUser);
+                        $location.path("/profile");
                     }
                 });
         }
