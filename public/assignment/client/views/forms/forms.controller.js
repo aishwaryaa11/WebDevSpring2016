@@ -36,7 +36,7 @@
         var selectedFormId = null;
 
         function addForm(form) {
-            if (typeof form !== "undefined" && form.title != "") {
+            if (form.title != "") {
                 FormService
                     .createFormForUser(vm.currentUser._id, form)
                     .then(function(response) {
