@@ -10,10 +10,10 @@
         vm.message = null;
         vm.register = register;
 
-        function init() {
-
-        }
-        init();
+        //function init() {
+        //
+        //}
+        //init();
 
         function register(user) {
             if (user == null) {
