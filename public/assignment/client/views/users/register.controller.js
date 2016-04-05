@@ -41,6 +41,7 @@
                 .findUserByUsername(user.username)
                 .then(function (response) {
                     var userTemp = response.data;
+                    console.log("came in");
                     if (userTemp != null) {
                         vm.message = "User already exists";
                     } else {
