@@ -4,7 +4,6 @@ module.exports = function(mongoose) {
 
     var FormSchema = mongoose.Schema({
         userId: String,
-        formId: String,
         title: String,
         fields: [FieldSchema],
         created: Date,

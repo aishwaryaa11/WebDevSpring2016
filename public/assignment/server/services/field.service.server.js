@@ -6,7 +6,7 @@ module.exports = function(app, formModel) {
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldById);
 
     function fieldsForFormId(req, res) {
-        var formId = req.params.formId;
+        var formId = req.params.form_id;
         formModel.findFieldsByFormId(formId)
             .then(
                 function (doc) {
