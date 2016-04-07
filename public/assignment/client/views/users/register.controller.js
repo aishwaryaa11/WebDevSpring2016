@@ -37,6 +37,7 @@
                 return ;
             }
 
+            //edit this so can check if user exists already
             //UserService
             //    .findUserByUsername(user.username)
             //    .then(function (response) {

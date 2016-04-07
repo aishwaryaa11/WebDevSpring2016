@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="form in model.forms">
-                <td><a href="#/form/{{form.formId}}/fields">{{form.title}}</a></td>
+                <td><a href="#/form/{{form._id}}/fields">{{form.title}}</a></td>
                 <td>
                     <div>
                         <button ng-click="model.deleteForm($index)" class="btn btn-primary pull-middle">

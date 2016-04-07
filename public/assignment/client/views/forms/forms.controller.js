@@ -1,100 +1,58 @@
 "use strict";
-(function(){
+(function () {
     angular
         .module("FormBuilderApp")
-        .controller("FormController", formController);
+        .controller("FormsController", FormsController);
 
-    function formController(UserService, FormService) {
+    function FormsController(FormService, $rootScope, $location) {
         var vm = this;
 
+        vm.deleteForm = deleteForm;
         vm.addForm = addForm;
         vm.updateForm = updateForm;
-        vm.deleteForm = deleteForm;
         vm.selectForm = selectForm;
-        vm.currentUser = null;
         vm.forms = [];
+        vm.form = null;
+        vm.goToFields = goToFields;
 
-        function init() {
-            UserService
-                .getCurrentUser()
-                .then(function(response) {
-                    var userTemp = response.data;
-                    if (userTemp) {
-                        vm.currentUser = userTemp;
-                        return FormService.findAllFormsForUser(vm.currentUser._id);
-                    }
-                })
-                .then(function(response) {
-                    var forms = response.data;
-                    if (forms) {
-                        vm.forms = forms;
-                    }
-                });
+        function renderForms (response) {
+            vm.forms = response.data;
         }
+
+        function init () {
+            FormService
+                .findAllFormsForUser($rootScope.currentUser._id)
+                .then(renderForms);
+            vm.form = null;
+        }
+
         init();
 
-        var selectedFormId = null;
-
-        function addForm(form) {
-            if (form.title != "") {
-                FormService
-                    .createFormForUser(vm.currentUser._id, form)
-                    .then(function(response) {
-                        var forms = response.data;
-                        if (forms) {
-                            vm.forms = forms;
-                        }
-                    });
-            }
+        function goToFields(formId) {
+            console.log(formId);
+            $location.url("#/form/" + formId + "/fields");
         }
 
-        function updateForm(form) {
+        function deleteForm (form) {
             FormService
-                .updateFormById(selectedFormId, form)
-                .then(function(response) {
-                    var formTemp = response.data;
-                    if (formTemp) {
-                        return FormService.findAllFormsForUser(vm.currentUser._id);
-                    }
-                })
-                .then(function(response) {
-                    var forms = response.data;
-                    if (forms) {
-                        vm.forms = forms;
-                    }
-                });
+                .deleteFormById(form._id)
+                .then(init);
         }
 
-        function deleteForm(index) {
-            selectedFormId = vm.forms[index]._id;
+        function addForm (form) {
             FormService
-                .deleteFormById(selectedFormId)
-                .then(function(response) {
-                    return FormService.findAllFormsForUser(vm.currentUser._id);
-                })
-                .then(function(response) {
-                    var forms = response.data;
-                    if (forms) {
-                        vm.forms = forms;
-                    }
-                });
+                .createFormForUser($rootScope.currentUser._id, form)
+                .then(init);
         }
 
-        function selectForm(index) {
-            selectedFormId = vm.forms[index]._id;
+        function updateForm (form) {
             FormService
-                .findFormById(selectedFormId)
-                .then(function(response) {
-                    var formTemp = response.data;
-                    if (formTemp) {
-                        vm.form = {
-                            _id: formTemp._id,
-                            title: formTemp.title,
-                            userId: formTemp.userId,
-                            fields: formTemp.fields
-                        };
-                    }
-                });
+                .updateFormById(form._id, form)
+                .then(init);
+        }
+
+        function selectForm (fIndex) {
+            vm.form = vm.forms[fIndex];
         }
     }
 })();
