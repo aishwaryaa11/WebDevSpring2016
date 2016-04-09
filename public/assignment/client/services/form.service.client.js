@@ -34,7 +34,7 @@
         }
 
         function deleteFormById(formId) {
-            return $http.del("/api/assignment/form/" + formId);
+            return $http.delete("/api/assignment/form/" + formId);
         }
 
         function updateFormById(formId, newForm) {
