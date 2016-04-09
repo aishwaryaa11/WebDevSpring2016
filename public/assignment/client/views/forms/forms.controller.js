@@ -2,7 +2,7 @@
 (function () {
     angular
         .module("FormBuilderApp")
-        .controller("FormsController", FormsController);
+        .controller("FormController", FormsController);
 
     function FormsController(FormService, $rootScope, $location) {
         var vm = this;
