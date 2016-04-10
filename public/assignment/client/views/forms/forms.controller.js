@@ -23,13 +23,12 @@
             FormService
                 .findAllFormsForUser($rootScope.currentUser._id)
                 .then(renderForms);
-            //vm.form = null;
+            vm.form = null;
         }
 
         init();
 
         function goToFields(formId) {
-            console.log(formId);
             $location.url("#/form/" + formId + "/fields");
         }
 

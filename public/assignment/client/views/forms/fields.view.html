@@ -72,7 +72,7 @@
     <hr>
     <label for="input5">Add New Field:</label>
     <div class="input-group">
-        <select ng-model="model.fieldType" class="form-control" id="input5">
+        <select ng-model="fieldType" class="form-control" id="input5">
             <option disabled selected value> -- Select an option -- </option>
             <option>Single Line Text Field</option>
             <option>Date Field</option>
@@ -82,7 +82,7 @@
             <option>Multi Line Text Field</option>
         </select>
         <div class="input-group-btn">
-            <button ng-click="model.addField(model.fieldType)" type="button" class="btn btn-primary">
+            <button ng-click="model.addField(fieldType)" type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-plus"></span>
             </button>
         </div>
