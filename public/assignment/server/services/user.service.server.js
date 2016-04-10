@@ -7,7 +7,7 @@ module.exports = function(app, userModel) {
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUser);
     app.get("/api/assignment/loggedin", loggedIn);
-    app.get("/api/assignment/logout", logout);
+    app.post("/api/assignment/logout", logout);
 
     function userRouter(req, res) {
         if (req.query.username && req.query.password) {
