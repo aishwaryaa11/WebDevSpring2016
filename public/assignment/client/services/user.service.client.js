@@ -15,7 +15,7 @@
             deleteUserById: deleteUserById,
             updateUser: updateUser,
             setCurrentUser: setCurrentUser,
-            logout: logout,
+            //logout: logout,
             getProfile: getProfile,
             getCurrentUser: getCurrentUser
         };
@@ -62,9 +62,9 @@
             return $http.get("/api/assignment/loggedin");
         }
 
-        function logout() {
-            return $http.post("/api/assignment/logout");
-        }
+        //function logout() {
+        //    return $http.post("/api/assignment/logout");
+        //}
 
     }
 })();

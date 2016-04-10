@@ -7,7 +7,7 @@ module.exports = function(app, userModel) {
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUser);
     app.get("/api/assignment/loggedin", loggedIn);
-    app.post("/api/assignment/logout", logout);
+    //app.post("/api/assignment/logout", logout);
 
     function userRouter(req, res) {
         if (req.query.username && req.query.password) {
@@ -67,10 +67,9 @@ module.exports = function(app, userModel) {
         res.json(req.session.currentUser);
     }
 
-    function logout(req, res) {
-        req.logOut();
-        res.send(200);
-    }
+    //function logout(req, res) {
+    //    req.logOut();
+    //}
 
     function updateUser(req, res) {
         var user = req.body;
