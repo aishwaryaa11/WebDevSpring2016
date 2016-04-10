@@ -46,14 +46,6 @@
                     checkLoggedIn: checkLoggedIn
                 }
             })
-            .when("/fields", {
-                templateUrl: "views/forms/fields.view.html",
-                controller: "FieldsController",
-                controllerAs: "model",
-                resolve: {
-                    checkLoggedIn : checkLoggedIn
-                }
-            })
             .when("/form/:formId/fields", {
                 templateUrl: "views/forms/fields.view.html",
                 controller: "FieldsController",
