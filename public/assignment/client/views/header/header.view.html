@@ -17,8 +17,8 @@
                     ng-class="{'active' : model.$location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
                 <li ng-show="currentUser"
                     ng-class="{'active' : model.$location.url().indexOf('username') != -1}"><a href="#/profile">{{currentUser.username}}</a></li>
-                <li ng-show="currentUser">
-                    <a ng-click="model.logout()">logout</a></li>
+                <li ng-show="currentUser" ng-click="logout()">
+                    <a href="#/home">logout</a></li>
             </ul>
         </div>
     </div>
