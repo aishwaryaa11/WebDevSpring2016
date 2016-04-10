@@ -10,6 +10,7 @@
 
         function logout() {
             $rootScope.currentUser = null;
+            UserService.getCurrentUser()
         }
     }
 })();
