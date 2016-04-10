@@ -15,6 +15,7 @@
 
         function logout() {
             UserService.setCurrentUser(null);
+            vm.currentUser = null;
             $location.url("/home");
         }
     }
