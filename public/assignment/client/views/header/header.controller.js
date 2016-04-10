@@ -9,7 +9,7 @@
         $scope.$location = $location;
 
         function logout() {
-            $rootScope.cUser = null;
+            $rootScope.currentUser = null;
         }
     }
 })();
