@@ -1,22 +1,15 @@
-(function(){
+"use strict";
+(function () {
     angular
         .module("FormBuilderApp")
         .controller("HeaderController", headerController);
 
-    function headerController($location, UserService) {
-        var vm = this;
-
-        vm.logout = logout;
-
-        function init() {
-            vm.$location = $location;
-        }
-        init();
+    function headerController($rootScope, $location, $scope) {
+        $scope.logout = logout;
+        $scope.$location = $location;
 
         function logout() {
-            UserService.setCurrentUser(null);
-            vm.currentUser = null;
-            $location.url("/home");
+            $rootScope.cUser = null;
         }
     }
 })();
