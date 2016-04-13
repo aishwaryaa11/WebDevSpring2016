@@ -1,6 +1,6 @@
 module.exports = function(mongoose) {
 
-    var UserSchema =mongoose.Schema({
+    var UserTSchema =mongoose.Schema({
         username: String,
         password: String,
         firstName: String,
@@ -10,5 +10,5 @@ module.exports = function(mongoose) {
         placesbeento: [String],
         placeswannago: [String]
     }, {collection: 'project.users'});
-    return UserSchema;
+    return UserTSchema;
 };

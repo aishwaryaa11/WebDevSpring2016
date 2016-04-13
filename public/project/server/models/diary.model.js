@@ -3,7 +3,7 @@ var q = require('q');
 module.exports = function (uuid, mongoose, db) {
 
     var DiaryExpandSchema = require("./diary-expand.schema.server.js")(mongoose);
-    var FieldModel = mongoose.model('Field', DiaryExpandSchema);
+    var FieldModel = mongoose.model('DiaryExpand', DiaryExpandSchema);
     var DiarySchema = require("./diary.schema.server.js")(mongoose);
     var DiaryModel = mongoose.model('Diary', DiarySchema);
 

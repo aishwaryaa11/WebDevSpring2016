@@ -2,8 +2,8 @@ var q = require("q");
 
 module.exports = function (uuid, mongoose, db) {
 
-    var UserSchema = require("./user.schema.server.js")(mongoose);
-    var UserModel = mongoose.model('User', UserSchema);
+    var UserTSchema = require("./user.schema.server.js")(mongoose);
+    var UserTModel = mongoose.model('UserT', UserTSchema);
 
     var api = {
         findUserByCredentials: findUserByCredentials,
@@ -19,7 +19,7 @@ module.exports = function (uuid, mongoose, db) {
 
     function findUserByUsername(username) {
         var deferred = q.defer();
-        UserModel.findOne({username: username}, function(err, doc) {
+        UserTModel.findOne({username: username}, function(err, doc) {
             if (err) {
                 deferred.reject(err);
             }
@@ -33,7 +33,7 @@ module.exports = function (uuid, mongoose, db) {
 
     function findUserByCredentials(credentials) {
         var deferred = q.defer();
-        UserModel.findOne(
+        UserTModel.findOne(
             {username: credentials.username,
                 password: credentials.password},
             function (err, doc) {
@@ -49,7 +49,7 @@ module.exports = function (uuid, mongoose, db) {
 
     function findUserById(userId) {
         var deferred = q.defer();
-        UserModel.findById(userId, function (err, doc) {
+        UserTModel.findById(userId, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             }
@@ -62,7 +62,7 @@ module.exports = function (uuid, mongoose, db) {
 
     function findAllUsers() {
         var deferred = q.defer();
-        UserModel.find({}, function (err, doc) {
+        UserTModel.find({}, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             }
@@ -76,7 +76,7 @@ module.exports = function (uuid, mongoose, db) {
 
     function deleteUserById(userId) {
         var deferred = q.defer();
-        UserModel.remove({_id: userId}, function (err, doc) {
+        UserTModel.remove({_id: userId}, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             }
@@ -91,7 +91,7 @@ module.exports = function (uuid, mongoose, db) {
 
     function createUser(newUser) {
         var deferred = q.defer();
-        UserModel.create(newUser, function(err, doc) {
+        UserTModel.create(newUser, function(err, doc) {
             if (err) {
                 deferred.reject(err);
             }
@@ -116,7 +116,7 @@ module.exports = function (uuid, mongoose, db) {
         };
 
         var deferred = q.defer();
-        UserModel.findByIdAndUpdate(userId, {$set:newUser}, {new: true, upsert: true}, function(err, doc) {
+        UserTModel.findByIdAndUpdate(userId, {$set:newUser}, {new: true, upsert: true}, function(err, doc) {
             if (err) {
                 deferred.reject(err);
             }
