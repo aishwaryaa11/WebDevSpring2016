@@ -1,7 +1,7 @@
 (function(){
     angular
         .module("Travelogue")
-        .controller("MainController", mainController);
+        .controller("MainTController", mainController);
 
     function mainController($location) {
         var vm = this;
