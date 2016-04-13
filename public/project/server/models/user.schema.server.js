@@ -6,7 +6,7 @@ module.exports = function(mongoose) {
         firstName: String,
         lastName: String,
         email: [String],
-        location: [String], //could enter multiple locations
+        location: String,
         placesbeento: [String],
         placeswannago: [String]
     }, {collection: 'project.users'});

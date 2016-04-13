@@ -78,7 +78,7 @@ module.exports = function(app, userTModel) {
         userTModel.updateUser(userId, user)
             .then(
                 function (na) {
-                    userModel.findUserById(req.session.currentUser._id)
+                    userTModel.findUserById(req.session.currentUser._id)
                         .then(
                             function (doc) {
                                 req.session.currentUser = doc;
