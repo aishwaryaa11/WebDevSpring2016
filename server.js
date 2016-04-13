@@ -37,6 +37,6 @@ app.use(multer());
 app.use(cookieParser());
 
 require("./public/assignment/server/app.js")(app, uuid, mongoose, db);
-//require("./public/project/server/app.js") (app, uuid);
+require("./public/project/server/app.js") (app, uuid, mongoose, db);
 
 app.listen(port, ipaddress);

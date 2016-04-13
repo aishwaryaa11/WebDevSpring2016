@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Travelogue">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Index</title>
+
+    <!-- Jquery Import-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+    <!-- Angular Import -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+
+    <!-- Bootstrap Import -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/js/bootstrap-datepicker.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.min.js">
+    </script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <!-- Controllers -->
+    <script src="views/home/home.controller.js"></script>
+    <script src="views/admin/admin.controller.js"></script>
+    <script src="views/diary/diary.controller.js"></script>
+    <script src="views/diary/diary-expand.controller.js"></script>
+    <!--<script src="views/photos/photos.controller.js"></script>-->
+    <!--<script src="views/diary/photos-expand.controller.js"></script>-->
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/main/main.controller.js"></script>
+    <script src="views/sidebar/sidebar.controller.js"></script>
+    <script src="views/users/login.controller.js"></script>
+    <script src="views/users/profile.controller.js"></script>
+    <script src="views/users/register.controller.js"></script>
+
+    <script src="services/diary.service.client.js"></script>
+    <script src="services/diary-expand.service.client.js"></script>
+    <script src="services/user.service.client.js"></script>
+    <!--<script src="services/photo.service.client.js"></script>-->
+    <!--<script src="services/photo-expand.service.client.js"></script>-->
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-sortable/0.13.4/sortable.js"></script>
+    <script src="views/sortable/ng-sortable.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="views/sortable/ng-sortable.min.css">
+
+</head>
+
+<body ng-controller="MainTController">
+<div ng-include="'views/header/header.view.html'"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div ng-include="'views/sidebar/sidebar.view.html'"></div>
+        <div ng-view></div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

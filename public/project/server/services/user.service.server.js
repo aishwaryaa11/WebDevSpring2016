@@ -1,13 +1,13 @@
 module.exports = function(app, userModel) {
-    app.post("/api/assignment/user", register);
-    app.get("/api/assignment/userCred/:username/:password", findUserByCredentials);
-    app.get("/api/assignment/user", userRouter);
-    app.get("/api/assignment/user/:id", findUserById);
-    app.get("/api/assignment/user?username=username", findUserByUsername);
-    app.put("/api/assignment/user/:id", updateUser);
-    app.delete("/api/assignment/user/:id", deleteUser);
-    app.get("/api/assignment/loggedin", loggedIn);
-    //app.post("/api/assignment/logout", logout);
+    app.post("/api/project/user", register);
+    app.get("/api/project/userCred/:username/:password", findUserByCredentials);
+    app.get("/api/project/user", userRouter);
+    app.get("/api/project/user/:id", findUserById);
+    app.get("/api/project/user?username=username", findUserByUsername);
+    app.put("/api/project/user/:id", updateUser);
+    app.delete("/api/project/user/:id", deleteUser);
+    app.get("/api/project/loggedin", loggedIn);
+    //app.post("/api/project/logout", logout);
 
     function userRouter(req, res) {
         if (req.query.username && req.query.password) {
