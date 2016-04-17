@@ -5,10 +5,10 @@ module.exports = function(mongoose) {
         password: String,
         firstName: String,
         lastName: String,
-        email: [String],
+        email: String,
         location: String,
-        placesbeento: [String],
-        placeswannago: [String]
+        placesbeento: String,
+        placeswannago: String
     }, {collection: 'project.users'});
     return UserTSchema;
 };
