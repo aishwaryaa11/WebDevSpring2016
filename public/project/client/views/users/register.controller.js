@@ -62,7 +62,7 @@
                 .createUser(user)
                 .then(function(response) {
                     console.log(response.toString());
-                    if (response.toString().indexOf("400") !== -1){
+                    if (response.errorCode == 400){
                         vm.message = "User already exists";
                         return ;
                     }
