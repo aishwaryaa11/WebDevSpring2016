@@ -61,7 +61,7 @@
             UserService
                 .createUser(user)
                 .then(function(response) {
-                    if (response.statusCode == 11000){
+                    if (response.code == 11000){
                         vm.message = "User already exists";
                         return ;
                     }
