@@ -61,6 +61,9 @@
             UserService
                 .createUser(user)
                 .then(function(response) {
+                    if (response.toString().indexOf("err") !== -1){
+                        vm.message = "User already exists";
+                    }
                     var newUser = response.data;
                     if (newUser) {
                         UserService.setCurrentUser(newUser);
