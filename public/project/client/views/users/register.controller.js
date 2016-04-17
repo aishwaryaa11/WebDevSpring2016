@@ -62,7 +62,7 @@
                 .createUser(user)
                 .then(function(response) {
                     console.log(response.toString());
-                    if (response.toString().indexOf("duplicate key error") !== -1){
+                    if (response.toString().indexOf("400") !== -1){
                         vm.message = "User already exists";
                         return ;
                     }
