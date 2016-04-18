@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>Web Development Spring 2016</title>
     <h1>Aishwarya's Homepage</h1>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.min.js"></script>
 
@@ -13,7 +12,7 @@
 </head>
 
 <body ng-controller="mycontroller">
-    <div style="height: 1000px">
+    <div style="height: 800px">
         <uib-carousel interval="7000">
             <uib-slide ng-repeat="slide in slides" active="slide.active">
                 <img ng-src="{{slide.image}}" style="margin:auto;">
