@@ -32,7 +32,7 @@ module.exports = function(app, userModel) {
                     res.json(doc);
                 },
                 function (err) {
-                    res.status(400).send("User already exists");
+                    res.status(400).send(err);
                 }
             );
     }
