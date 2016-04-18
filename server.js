@@ -27,7 +27,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 var session = require('express-session');
 app.use(session({
     secret: 'keyboard cat',
-    resave: false,
+    resave: true,
     saveUninitialized: true
 }));
 
@@ -35,6 +35,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
 app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 require("./public/assignment/server/app.js")(app, uuid, mongoose, db);
 require("./public/project/server/app.js") (app, uuid, mongoose, db);
