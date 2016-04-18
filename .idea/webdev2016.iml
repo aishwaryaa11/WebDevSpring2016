@@ -13,5 +13,6 @@
     <orderEntry type="library" name="angular-animate" level="application" />
     <orderEntry type="library" name="ui-bootstrap-tpls" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="angular-touch" level="application" />
   </component>
 </module>
