@@ -6,8 +6,4 @@ angular.module('homepage', ['ui.bootstrap']).controller('mycontroller',['$scope'
     $scope.slides.push({title: 'Assignments', text: 'Link to the Assignments homepage', image: 'http://placekitten.com/302/200', link: 'assignment/client'});
     $scope.slides.push({title: 'Github Repo', text: 'Check out my code here', image: 'http://placekitten.com/302/200', link: 'http://github.com/aishwaryaa11/webdev'});
 
-    $scope.setActive = function(idx) {
-        $scope.slides[idx].active=true;
-    }
-
 }]);
