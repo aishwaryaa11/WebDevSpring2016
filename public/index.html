@@ -16,17 +16,15 @@
 </head>
 
 <body ng-controller="mycontroller">
-    <div style="height: 800px">
-        <uib-carousel interval="7000">
-            <uib-slide ng-repeat="slide in slides" active="slide.active">
-                <img ng-src="{{slide.image}}" style="margin:auto;">
-                <div class="carousel-caption">
-                    <a href={{slide.link}}>{{slide.title}}</a>
-                    <p>{{slide.text}}</p>
-                </div>
-            </uib-slide>
-        </uib-carousel>
+<div carousel interval="7000">
+    <div slide ng-repeat="slide in slides" active="slide.active">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+            <a href={{slide.link}}>{{slide.title}}</a>
+            <p>{{slide.text}}</p>
+        </div>
     </div>
+</div>
 
 <button ng-click="setActive(0)">Back to Start</button>
 </body>
