@@ -11,22 +11,69 @@
 
     <script src="idxscript.js"></script>
 
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+    <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />-->
     <!--<link href="dashboard.css" rel="stylesheet">-->
 </head>
 
 <body ng-controller="mycontroller">
-    <div style="height: 800px">
-        <uib-carousel interval="7000">
-            <uib-slide ng-repeat="slide in slides" active="slide.active">
-                <img ng-src="{{slide.image}}" style="margin:auto;">
-                <div class="carousel-caption">
-                    <a href={{slide.link}}>{{slide.title}}</a>
-                    <p>{{slide.text}}</p>
-                </div>
-            </uib-slide>
-        </uib-carousel>
+<div style="height: 800px">
+    <div ng-mouseenter="pause()" ng-mouseleave="play()" class="carousel ng-isolate-scope" ng-swipe-right="prev()" ng-swipe-left="next()" interval="7000">
+        <div class="carousel-inner" ng-transclude="">
+            <!-- ngRepeat: slide in slides --><div ng-class="{
+    'active': active
+  }" class="item text-center ng-isolate-scope" ng-transclude="" ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="http://placekitten.com/300/200" style="margin:auto;" class="ng-scope" src="http://placekitten.com/300/200">
+            <div class="carousel-caption ng-scope">
+                <a href="https://docs.google.com/a/husky.neu.edu/document/d/1eTukKILfFtT6AdwE6gftETqZjoGU96EA0YGm2OxVHk0/edit?usp=sharing" class="ng-binding">Project Proposal</a>
+                <p class="ng-binding">Use cases, functionality description and client-server model for Travelogue</p>
+            </div>
+        </div><!-- end ngRepeat: slide in slides --><div ng-class="{
+    'active': active
+  }" class="item text-center ng-isolate-scope" ng-transclude="" ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="http://placekitten.com/301/200" style="margin:auto;" class="ng-scope" src="http://placekitten.com/301/200">
+            <div class="carousel-caption ng-scope">
+                <a href="project/client" class="ng-binding">Travelogue</a>
+                <p class="ng-binding">Link to the Project homepage</p>
+            </div>
+        </div><!-- end ngRepeat: slide in slides --><div ng-class="{
+    'active': active
+  }" class="item text-center ng-isolate-scope" ng-transclude="" ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="http://placekitten.com/302/200" style="margin:auto;" class="ng-scope" src="http://placekitten.com/302/200">
+            <div class="carousel-caption ng-scope">
+                <a href="assignment/client" class="ng-binding">Assignments</a>
+                <p class="ng-binding">Link to the Assignments homepage</p>
+            </div>
+        </div><!-- end ngRepeat: slide in slides --><div ng-class="{
+    'active': active
+  }" class="item text-center ng-isolate-scope" ng-transclude="" ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="http://placekitten.com/302/200" style="margin:auto;" class="ng-scope" src="http://placekitten.com/302/200">
+            <div class="carousel-caption ng-scope">
+                <a href="http://github.com/aishwaryaa11/webdev" class="ng-binding">Github Repo</a>
+                <p class="ng-binding">Check out my code here</p>
+            </div>
+        </div><!-- end ngRepeat: slide in slides -->
+        </div>
+        <a role="button" href="" class="left carousel-control" ng-click="prev()" ng-show="slides.length > 1">
+            <span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">previous</span>
+        </a>
+        <a role="button" href="" class="right carousel-control" ng-click="next()" ng-show="slides.length > 1">
+            <span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">next</span>
+        </a>
+        <ol class="carousel-indicators" ng-show="slides.length > 1">
+            <!-- ngRepeat: slide in slides | orderBy:indexOfSlide track by $index --><li ng-repeat="slide in slides | orderBy:indexOfSlide track by $index" ng-class="{ active: isActive(slide) }" ng-click="select(slide)" class="ng-scope active">
+            <span class="sr-only ng-binding">slide 1 of 4<!-- ngIf: isActive(slide) --><span ng-if="isActive(slide)" class="ng-scope">, currently active</span><!-- end ngIf: isActive(slide) --></span>
+        </li><!-- end ngRepeat: slide in slides | orderBy:indexOfSlide track by $index --><li ng-repeat="slide in slides | orderBy:indexOfSlide track by $index" ng-class="{ active: isActive(slide) }" ng-click="select(slide)" class="ng-scope active">
+            <span class="sr-only ng-binding">slide 2 of 4<!-- ngIf: isActive(slide) --><span ng-if="isActive(slide)" class="ng-scope">, currently active</span><!-- end ngIf: isActive(slide) --></span>
+        </li><!-- end ngRepeat: slide in slides | orderBy:indexOfSlide track by $index --><li ng-repeat="slide in slides | orderBy:indexOfSlide track by $index" ng-class="{ active: isActive(slide) }" ng-click="select(slide)" class="ng-scope active">
+            <span class="sr-only ng-binding">slide 3 of 4<!-- ngIf: isActive(slide) --><span ng-if="isActive(slide)" class="ng-scope">, currently active</span><!-- end ngIf: isActive(slide) --></span>
+        </li><!-- end ngRepeat: slide in slides | orderBy:indexOfSlide track by $index --><li ng-repeat="slide in slides | orderBy:indexOfSlide track by $index" ng-class="{ active: isActive(slide) }" ng-click="select(slide)" class="ng-scope active">
+            <span class="sr-only ng-binding">slide 4 of 4<!-- ngIf: isActive(slide) --><span ng-if="isActive(slide)" class="ng-scope">, currently active</span><!-- end ngIf: isActive(slide) --></span>
+        </li><!-- end ngRepeat: slide in slides | orderBy:indexOfSlide track by $index -->
+        </ol>
     </div>
+</div>
 
 </body>
 
