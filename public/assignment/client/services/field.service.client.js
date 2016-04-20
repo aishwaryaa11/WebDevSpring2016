@@ -2,7 +2,7 @@
 (function() {
     angular
         .module("FormBuilderApp")
-        .factory("FieldsService", fieldsService);
+        .factory("FieldService", fieldsService);
 
     function fieldsService($http) {
         var service = {
