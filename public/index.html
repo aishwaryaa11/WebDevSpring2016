@@ -31,7 +31,7 @@
     </div>
 
     <carousel interval="7000">
-        <slide ng-repeat="slide in slides" active="slide.active" ng-animate="false">
+        <slide ng-repeat="slide in slides" active="slide.active"">
             <img ng-src="{{slide.image}}?{{$index}}" style="margin:auto;">
             <div class="carousel-caption">
                 <a href={{slide.link}}>{{slide.title}}</a>
