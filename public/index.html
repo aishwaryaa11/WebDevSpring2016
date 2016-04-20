@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Web Development Spring 2016</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-touch.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-animate.js"></script>
 
     <script src="idxscript.js"></script>
 
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet" />
     <!--<link href="dashboard.css" rel="stylesheet">-->
 </head>
 
@@ -25,22 +25,20 @@
                     <br>
                     <h3>Web Development Spring 2016</h3>
                     <img src="img/linkedin.jpg" class="img-rounded" width="100" height="100">
-                </div><!--/.col-lg-12 -->
-            </div><!--/.row -->
-        </div><!--/.container -->
-    </div><!--/.#headerwrap -->
-
-    <div style="height: 800px">
-        <uib-carousel interval="7000">
-            <uib-slide ng-repeat="slide in slides" active="slide.active">
-                <img ng-src="{{slide.image}}" style="margin:auto;">
-                <div class="carousel-caption">
-                    <a href={{slide.link}}>{{slide.title}}</a>
-                    <p>{{slide.text}}</p>
                 </div>
-            </uib-slide>
-        </uib-carousel>
+            </div>
+        </div>
     </div>
+
+    <carousel interval="7000">
+        <slide ng-repeat="slide in slides" active="slide.active" ng-animate="false">
+            <img ng-src="{{slide.image}}?{{$index}}" style="margin:auto;">
+            <div class="carousel-caption">
+                <a href={{slide.link}}>{{slide.title}}</a>
+                <p>{{slide.text}}</p>
+            </div>
+        </slide>
+    </carousel>
 </body>
 
 </html>
