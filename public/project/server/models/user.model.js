@@ -1,6 +1,6 @@
 var q = require("q");
 
-module.exports = function (uuid, mongoose, db) {
+module.exports = function (mongoose, db) {
 
     var UserTSchema = require("./user.schema.server.js")(mongoose);
     var UserTModel = mongoose.model('UserT', UserTSchema);
