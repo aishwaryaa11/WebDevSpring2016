@@ -37,26 +37,6 @@
                 return ;
             }
 
-            //edit this so can check if user exists already
-            //UserService
-            //    .findUserByUsername(user.username)
-            //    .then(function (response) {
-            //        var userTemp = response.data;
-            //        if (userTemp != null) {
-            //            vm.message = "User already exists";
-            //        } else {
-            //            UserService
-            //                .createUser(user)
-            //                .then(function(response) {
-            //                    var newUser = response.data;
-            //                    if (newUser) {
-            //                        UserService.setCurrentUser(newUser);
-            //                        $location.path("/profile");
-            //                    }
-            //                });
-            //        }
-            //    });
-
 
             UserService
                 .createUser(user)
