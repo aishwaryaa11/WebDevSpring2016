@@ -43,7 +43,7 @@ app.use(express.static(__dirname + '/public'));
 
 
 var assignmentUserModel = require("./public/assignment/server/models/user.model.js")(mongoose, db);
-var UserModel = require("./public/project/server/models/users.model.js") (mongoose, db);
+var UserModel = require("./public/project/server/models/user.model.js") (mongoose, db);
 
 require("./public/security/security.js") (app, UserModel, assignmentUserModel, bcrypt);
 require("./public/assignment/server/app.js")(app, mongoose, db, assignmentUserModel, bcrypt);
