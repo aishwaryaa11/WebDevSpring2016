@@ -34,9 +34,8 @@
             })
             .when("/home", {
                 templateUrl: "views/home/home.view.html",
-                resolve: {
-                    getLoggedIn: getLoggedIn
-                }
+                controller: "HomeController",
+                controllerAs: "model"
             })
             .when("/forms", {
                 templateUrl: "views/forms/forms.view.html",
@@ -60,38 +59,23 @@
     }
 
 
-    function getLoggedIn(UserService, $q) {
-        var deferred = $q.defer();
-
-        UserService
-            .getCurrentUser()
-            .then(function(response){
-                var currentUser = response.data;
-                UserService.setCurrentUser(currentUser);
-                deferred.resolve();
-            });
-
-        return deferred.promise;
-    }
-
-
-
-    function checkLoggedIn(UserService, $q, $location) {
+    function checkLoggedIn(UserService, $rootScope, $http, $q, $location) {
 
         var deferred = $q.defer();
 
-        UserService
-            .getCurrentUser()
-            .then(function(response) {
-                var currentUser = response.data;
-                if(currentUser) {
-                    UserService.setCurrentUser(currentUser);
+        $http.get("/api/assignment/loggedin").success(function(user) {
+            $rootScope.errorMessage = null;
+
+                if (user !== '0') {
+                    UserService.setCurrentUser(user);
                     deferred.resolve();
-                } else {
-                    deferred.reject();
-                    $location.url("/home");
                 }
-            });
+            else {
+                    $rootScope.errorMessage = "You need to log in.";
+                    deferred.reject();
+                    $location.url("/home")
+                }
+        });
 
         return deferred.promise;
     }

@@ -1,11 +1,14 @@
 module.exports = function(mongoose) {
 
     var UserSchema =mongoose.Schema({
-        username: {type: String, unique: true},
+        username: String,
         password: String,
         firstName: String,
         lastName: String,
-        email: [String]
+        emails: [String],
+        phones: [String],
+        roles: [String],
+        type: String
     }, {collection: 'assignment.users'});
     return UserSchema;
 };

@@ -15,15 +15,20 @@
             deleteUserById: deleteUserById,
             updateUser: updateUser,
             setCurrentUser: setCurrentUser,
-            //logout: logout,
+            logout: logout,
             getProfile: getProfile,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+            adminCreateUser: adminCreateUser,
+            adminFindAllUsers: adminFindAllUsers,
+            adminFindUser: adminFindUser,
+            adminDeleteUser: adminDeleteUser,
+            adminUpdateUser: adminUpdateUser
         };
 
         return service;
 
         function findUserByCredentials(username, password) {
-            return $http.get("/api/assignment/user?username=" + username + "&password=" + password);
+            return $http.post("/api/assignment/login", {username: username, password: password});
         }
 
         function findUserById(userId) {
@@ -39,7 +44,7 @@
         }
 
         function createUser(user) {
-            return $http.post("/api/assignment/user", user);
+            return $http.post("/api/assignment/register", user);
         }
 
         function deleteUserById(userId) {
@@ -59,12 +64,32 @@
         }
 
         function getCurrentUser() {
-            return $http.get("/api/assignment/loggedin");
+            return $rootScope.currentUser;
         }
 
-        //function logout() {
-        //    return $http.post("/api/assignment/logout");
-        //}
+        function logout() {
+            return $http.post("/api/assignment/logout");
+        }
+
+        function adminCreateUser(user) {
+            return $http.post("/api/assignment/admin/user", user);
+        }
+
+        function adminFindAllUsers() {
+            return $http.get("/api/assignment/admin/user");
+        }
+
+        function adminFindUser(user) {
+            return $http.get("/api/assignment/admin/user/" + user._id);
+        }
+
+        function adminUpdateUser(user) {
+            return $http.put("/api/assignment/admin/user/" + user._id, user);
+        }
+
+        function adminDeleteUser(user) {
+            return $http.delete("/api/assignment/admin/user/" + user._id);
+        }
 
     }
 })();

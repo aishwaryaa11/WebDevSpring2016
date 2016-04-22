@@ -1,41 +1,58 @@
 "use strict";
-(function(){
+(function () {
     angular
         .module("FormBuilderApp")
         .controller("ProfileController", profileController);
 
-    function profileController(UserService) {
+    function profileController (UserService, $location) {
         var vm = this;
-
-        vm.message = null;
-        vm.error = null;
         vm.update = update;
+        vm.deleteUser = deleteUser;
 
         function init() {
-            UserService
-                .getCurrentUser()
-                .then(function(response) {
-                    var currentUser = response.data;
-                    if (currentUser) {
-                        UserService.setCurrentUser(currentUser);
-                        vm.currentUser = currentUser;
-                    }
-                });
+            vm.user = UserService.getCurrentUser();
+            vm.user.emails = vm.user.emails.toString();
+            vm.user.phones = vm.user.phones.toString();
+            vm.user.roles = vm.user.roles.toString();
+            console.log(vm.user);
+
         }
+
         init();
 
-        function update(user) {
-            UserService
-                .updateUser(vm.currentUser._id, user)
-                .then(function(response) {
-                    var userTemp = response.data;
-                    if (userTemp) {
-                        vm.message = "Successfully updated user";
-                        UserService.setCurrentUser(userTemp);
-                    } else {
-                        vm.error = "Unable to update user";
-                    }
+        function update (user) {
+            if (user.phones.length > 0) {
+                user.phones = user.phones.split(",");
+            }
+            else {
+                user.phones = [];
+            }
+            if (user.emails.length > 0) {
+                user.emails = user.emails.split(",");
+            }
+            else {
+                user.emails = [];
+            }
+            if (user.roles.length > 0) {
+                user.roles = user.roles.split(",");
+            }
+            else {
+                user.roles = [];
+            }
+            UserService.updateUser(user._id, user)
+                .then(function (response) {
+                    init();
                 });
+        }
+
+        function deleteUser(user) {
+            UserService.deleteUserById(user._id)
+                .then(function (response) {
+                        UserService.setCurrentUser(null);
+                        $location.path('/home');
+                    }
+                );
+
         }
     }
 })();

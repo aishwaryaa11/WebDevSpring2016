@@ -14,5 +14,6 @@
     <orderEntry type="library" name="ui-bootstrap-tpls" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="angular-touch" level="application" />
+    <orderEntry type="library" name="sortable" level="application" />
   </component>
 </module>

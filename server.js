@@ -1,12 +1,13 @@
 var express = require('express');
 var app = express();
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser  = require('cookie-parser');
 var multer = require('multer');
-var session = require('express-session');
 var passport = require('passport');
 var uuid = require('node-uuid');
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
 
 var connectionString = 'mongodb://127.0.0.1:27017/webdevdb/';
 
@@ -31,14 +32,21 @@ app.use(session({
     saveUninitialized: true
 }));
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static(__dirname + '/public'));
 
-require("./public/assignment/server/app.js")(app, uuid, mongoose, db);
-require("./public/project/server/app.js") (app, uuid, mongoose, db);
+
+var assignmentUserModel = require("./public/assignment/server/models/user.model.js")(mongoose, db);
+var UserModel = require("./public/project/server/models/users.model.js") (mongoose, db);
+
+require("./public/security/security.js") (app, UserModel, assignmentUserModel, bcrypt);
+require("./public/assignment/server/app.js")(app, mongoose, db, assignmentUserModel, bcrypt);
+require("./public/project/server/app.js") (app, mongoose, db, multer, UserModel, bcrypt);
 
 app.listen(port, ipaddress);
