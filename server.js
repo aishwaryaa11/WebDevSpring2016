@@ -47,6 +47,6 @@ var UserModel = require("./public/project/server/models/user.model.js") (mongoos
 
 require("./public/security/security.js") (app, UserModel, assignmentUserModel, bcrypt);
 require("./public/assignment/server/app.js")(app, mongoose, db, assignmentUserModel, bcrypt);
-require("./public/project/server/app.js") (app, mongoose, db, multer, UserModel, bcrypt);
+//require("./public/project/server/app.js") (app, mongoose, db, multer, UserModel, bcrypt);
 
 app.listen(port, ipaddress);
