@@ -2,9 +2,9 @@
 (function () {
     angular
         .module("FormBuilderApp")
-        .controller("FormController", FormsController);
+        .controller("FormController", formsController);
 
-    function FormsController(FormService, $rootScope, $location) {
+    function formsController(FormService, $rootScope, $location) {
         var vm = this;
 
         vm.deleteForm = deleteForm;
