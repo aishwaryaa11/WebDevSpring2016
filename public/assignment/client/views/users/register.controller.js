@@ -43,7 +43,7 @@
                 .then(function(response) {
                     var newUser = response.data;
                     if (newUser == null){
-                        vm.message = "User already exists.";
+                        vm.message = "You are already registered.";
                         return ;
                     }
                     if (newUser) {
