@@ -42,6 +42,10 @@
                 .createUser(user)
                 .then(function(response) {
                     var newUser = response.data;
+                    if (newUser == null){
+                        vm.message = "User already exists.";
+                        return ;
+                    }
                     if (newUser) {
                         UserService.setCurrentUser(newUser);
                         $location.path("/profile");
