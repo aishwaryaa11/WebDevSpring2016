@@ -29,7 +29,7 @@
                 controller: "AdminController",
                 controllerAs: "model",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkAdmin : checkAdmin
                 }
             })
             .when("/home", {
@@ -60,23 +60,41 @@
 
 
     function checkLoggedIn(UserService, $rootScope, $http, $q, $location) {
-
         var deferred = $q.defer();
 
-        $http.get("/api/assignment/loggedin").success(function(user) {
+        $http.get("/api/assignment/loggedin").success(function(user)
+        {
             $rootScope.errorMessage = null;
 
-                if (user !== '0') {
-                    UserService.setCurrentUser(user);
-                    deferred.resolve();
-                }
+            if (user !== '0') {
+                console.log(user);
+                UserService.setCurrentUser(user);
+                deferred.resolve();
+            }
             else {
-                    $rootScope.errorMessage = "You need to log in.";
-                    deferred.reject();
-                    $location.url("/home")
-                }
+                $rootScope.errorMessage = "You need to log in.";
+                deferred.reject();
+                $location.url("/home")
+            }
         });
+        return deferred.promise;
+    }
 
+    function checkAdmin($http, $q, $location, UserService) {
+        var deferred = $q.defer();
+
+        $http.get("/api/assignment/loggedin").success(function(user)
+        {
+            if (user.roles.indexOf("admin") > -1) {
+                console.log(user);
+                UserService.setCurrentUser(user);
+                deferred.resolve();
+            }
+            else {
+                deferred.reject();
+                $location.url("/profile");
+            }
+        });
         return deferred.promise;
     }
 
