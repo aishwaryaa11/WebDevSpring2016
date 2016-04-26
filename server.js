@@ -9,7 +9,7 @@ var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
-var connectionString = 'mongodb://127.0.0.1:27017/webdevdb?authSource=admin';
+var connectionString = 'mongodb://127.0.0.1:27017/webdevdb';
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
@@ -27,7 +27,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 
 app.use(session({
-    secret: process.env.PASSPORT_SECRET,
+    secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true
 }));
