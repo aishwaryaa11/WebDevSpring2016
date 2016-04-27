@@ -1,0 +1,19 @@
+<div ng-include="'views/sidebar/sidebar.view.html'"></div>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="SearchController">
+    <hr>
+    <h3 ng-show="model.showDiaries">Diaries</h3>
+    <hr ng-show="model.showDiaries">
+    <div  ng-repeat="d in model.diaries">
+        <a href="#/diary/{{d._id}}">
+            <h5>{{id.name}}</h5>
+        </a>
+    </div>
+
+    <h3 ng-show="model.showUsers">Users</h3>
+    <hr ng-show="model.showUsers">
+    <div ng-repeat="u in model.users">
+        <a href="#/profile/{{u._id}}">
+            <h5>{{u.username}}</h5>
+        </a>
+    </div>
+</div>

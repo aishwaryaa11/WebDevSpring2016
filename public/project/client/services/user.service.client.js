@@ -15,9 +15,17 @@
             deleteUserById: deleteUserById,
             updateUser: updateUser,
             setCurrentUser: setCurrentUser,
-            //logout: logout,
+            logout: logout,
             getProfile: getProfile,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+            findUserByDiaryId: findUserByDiaryId,
+            register: register,
+            login: login,
+            adminCreateUser: adminCreateUser,
+            adminFindAllUsers: adminFindAllUsers,
+            adminFindUser: adminFindUser,
+            adminDeleteUser: adminDeleteUser,
+            adminUpdateUser: adminUpdateUser
         };
 
         return service;
@@ -62,9 +70,44 @@
             return $http.get("/api/project/loggedin");
         }
 
-        //function logout() {
-        //    return $http.post("/api/project/logout");
-        //}
+        function logout() {
+            setCurrentUser(null);
+            return $http.post("/api/logout");
+        }
+
+        function login(username, password) {
+            var cred = {username: username, password: password};
+            return $http.post("/api/login", cred);
+
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+
+        function findUserByDiaryId(diaryId) {
+            return $http.get("/api/diary/" + diaryId + "/user");
+        }
+
+        function adminCreateUser(user) {
+            return $http.post("/api/admin/user", user);
+        }
+
+        function adminFindAllUsers() {
+            return $http.get("/api/admin/user");
+        }
+
+        function adminFindUser(user) {
+            return $http.get("/api/admin/user/" + user._id);
+        }
+
+        function adminUpdateUser(user) {
+            return $http.put("/api/admin/user/" + user._id, user);
+        }
+
+        function adminDeleteUser(user) {
+            return $http.delete("/api/admin/user/" + user._id);
+        }
 
     }
 })();

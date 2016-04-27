@@ -1,5 +1,5 @@
 body {
-  padding-top: 50px;
+  padding-top: 0px;
 }
 
 a {
@@ -22,6 +22,7 @@ a {
 .navbar-fixed-top {
   border: 0;
 }
+
 
 /*
  * Sidebar
@@ -60,10 +61,32 @@ a {
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
+  color: #ffffff;
+  background-color: #ffffff;
 }
 
+header {
+    column-width: 300px;
+    column-count: 2;
+}
+
+img {
+    margin: 10px 30px 15px 10px;
+}
+h1 {
+    margin-left: 10px;
+    align-self: center;
+    color: #fff;
+}
+h3 {
+    margin-left: 10px;
+    color: #428bca;
+}
+
+h5 {
+    margin-left: 10px;
+    color: #428bca;
+}
 
 /*
  * Main content
@@ -74,8 +97,8 @@ a {
 }
 @media (min-width: 768px) {
   .main {
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 }
 .main .page-header {
@@ -85,9 +108,16 @@ a {
 
  .carousel-inner > .item > img,
  .carousel-inner > .item > a > img {
-   width: 70%;
-   margin: auto;
+   width: 100%;
+   margin: 0px;
  }
+
+/*.carousel-cell {*/
+    /*width: 100%; !* full width *!*/
+    /*height: 100px; !* height of carousel *!*/
+    /*margin-right: 10px;*/
+/*}*/
+
 
 /*
  * Placeholder dashboard ideas
@@ -110,6 +140,7 @@ a {
 .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
   border: none;
 }
+
 
 @media (min-width: 768px ) {
   .row {
