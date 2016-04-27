@@ -1,31 +1,3 @@
-<div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Diary</h1>
-    <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
-    <div ng-show="error" class="alert alert-success" role="alert">{{error}}</div>
-    <form class="form-horizontal col-sm-10">
-        <div class="form-group">
-            <label for="inputNotes" class="col-sm-2 control-label">Notes/Tags:</label>
-            <div class="col-sm-6">
-                <input class="form-control" id="inputNotes" placeholder="{{currentDiary.notes}}" ng-model="currentDiary.notes">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="text" class="col-sm-2 control-label">Thoughts:</label>
-            <div class="col-sm-offset-2 col-sm-10">
-                <textarea name="paragraph_text" cols="100" rows="100" id="text" placeholder="{{currentDiary.text}}" ng-model="currentDiary.text"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <form>
-                    <button type="submit" class="btn btn-primary" ng-click="updateD(currentDiary)">Update</button>
-                </form>
-            </div>
-        </div>
-    </form>
-</div>
-
-
 <div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="DiaryExpandController">
     <h1 class="page-header">{{model.diary.title}}</h1>
     <ul class="nav nav-tabs">
@@ -43,52 +15,10 @@
                     <div class="input-group-btn" ng-include="'views/forms/buttons.html'"></div>
                 </div>
             </td>
-            <td ng-switch-when="OPTIONS">
-                <label>{{field.label}}</label>
-                <div class="input-group">
-                    <select class="form-control">
-                        <option ng-repeat="op in field.options track by $index">{{op.label}}</option>
-                    </select>
-                    <div class="input-group-btn" ng-include="'views/forms/buttons.html'"></div>
-                </div>
-            </td>
             <td ng-switch-when="TEXTAREA">
                 <label>{{field.label}}</label>
                 <div class="input-group">
                     <textarea class="form-control" placeholder="{{field.placeholder}}"></textarea>
-                    <div class="input-group-btn" ng-include="'views/forms/buttons.html'"></div>
-                </div>
-            </td>
-            <td ng-switch-when="CHECKBOXES">
-                <label>{{field.label}}</label>
-                <div class="input-group">
-                    <div class="checkbox">
-                        <div ng-repeat="op in field.options track by $index">
-                            <label>
-                                <input type="checkbox" value="{{op.value}}">{{op.label}}
-                            </label>
-                            <br>
-                        </div>
-                    </div>
-                    <div class="input-group-btn" ng-include="'views/forms/buttons.html'"></div>
-                </div>
-            </td>
-            <td ng-switch-when="RADIOS">
-                <label>{{field.label}}</label>
-                <div class="input-group">
-                    <div ng-repeat="op in field.options track by $index" class="radio">
-                        <label>
-                            <input type="radio" name="{{op.label}}" value="{{op.value}}" checked>
-                            {{op.label}}
-                        </label>
-                    </div>
-                    <div class="input-group-btn" ng-include="'views/forms/buttons.html'"></div>
-                </div>
-            </td>
-            <td ng-switch-default>
-                <label>{{field.label}}</label>
-                <div class="input-group">
-                    <input type="date" placeholder="{{field.placeholder}}" class="form-control">
                     <div class="input-group-btn" ng-include="'views/forms/buttons.html'"></div>
                 </div>
             </td>
@@ -98,15 +28,11 @@
     </table>
 
     <hr>
-    <label for="input5">Add New Field:</label>
+    <label for="input5">Add New Entry:</label>
     <div class="input-group">
         <select ng-model="fieldType" class="form-control" id="input5">
             <option disabled selected value> -- Select an option -- </option>
             <option>Single Line Text Field</option>
-            <option>Date Field</option>
-            <option>Dropdown Field</option>
-            <option>Checkboxes Field</option>
-            <option>Radio Buttons Field</option>
             <option>Multi Line Text Field</option>
         </select>
         <div class="input-group-btn">
@@ -128,7 +54,7 @@
                 </div>
                 <div class="modal-body" ng-switch on="model.eField.type">
                     <div ng-switch-when="TEXT">
-                        <h3>Single Line Field</h3>
+                        <h3>Notes/Tags</h3>
                         <form>
                             <label>Label</label>
                             <input ng-model="model.eField.label" class="form-control" type="text"
@@ -140,7 +66,7 @@
                         </form>
                     </div>
                     <div ng-switch-when="TEXTAREA">
-                        <h3>Multi Line Field</h3>
+                        <h3>Thoughts</h3>
                         <form>
                             <label>Label</label>
                             <input ng-model="model.eField.label" class="form-control" type="text"
@@ -149,49 +75,6 @@
                             <label>Placeholder</label>
                             <textarea ng-model="model.eField.placeholder" class="form-control"
                                       placeholder="Edit Placeholder"></textarea>
-                        </form>
-                    </div>
-                    <div ng-switch-when="OPTIONS">
-                        <h3>Dropdown Field</h3>
-                        <form>
-                            <label>Label</label>
-                            <input ng-model="model.eField.label" class="form-control" type="text"
-                                   placeholder="Edit Dropdown Label">
-                            <br>
-                            <label>Options</label>
-                            <textarea ng-model="model.optionText" class="form-control"
-                                      placeholder="Edit Dropdown Options"></textarea>
-                        </form>
-                    </div>
-                    <div ng-switch-when="DATE">
-                        <h3>Date Field</h3>
-                        <form>
-                            <label>Label</label>
-                            <input ng-model="model.eField.label" class="form-control" type="text">
-                            <br>
-                        </form>
-                    </div>
-                    <div ng-switch-when="RADIOS">
-                        <h3>Radio Buttons Field</h3>
-                        <form>
-                            <label>Label</label>
-                            <input ng-model="model.eField.label" class="form-control" type="text"
-                                   placeholder="Edit Radio Label">
-                            <br>
-                            <label>Options</label>
-                            <textarea ng-model="model.optionText" class="form-control" placeholder="Edit Radio Options"></textarea>
-                        </form>
-                    </div>
-                    <div ng-switch-default>
-                        <h3>Checkbox Field</h3>
-                        <form>
-                            <label>Label</label>
-                            <input ng-model="model.eField.label" class="form-control" type="text"
-                                   placeholder="Edit Checkbox label">
-                            <br>
-                            <label>Options</label>
-                            <textarea ng-model="model.optionText" class="form-control"
-                                      placeholder="Edit Checkbox options"></textarea>
                         </form>
                     </div>
                 </div>

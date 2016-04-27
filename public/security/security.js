@@ -86,7 +86,6 @@ module.exports = function(app, projectUserModel, assignmentUserModel, bcrypt) {
     }
 
     function login(req, res) {
-        console.log(req.user);
         var user = req.user;
         delete user.password;
         res.json(user);
@@ -157,7 +156,6 @@ module.exports = function(app, projectUserModel, assignmentUserModel, bcrypt) {
 
     function assignmentRegister(req, res) {
         var newUser = req.body;
-        newUser.password = bcrypt.hashSync(newUser.password);
 
         assignmentUserModel.findUserByUsername(newUser.username)
             .then(
