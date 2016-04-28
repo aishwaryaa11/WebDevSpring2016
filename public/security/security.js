@@ -10,10 +10,10 @@ module.exports = function(app, projectUserModel, assignmentUserModel, bcrypt) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    app.post  ('/api/login',    passport.authenticate('project'), login);
-    app.post  ('/api/logout',   logout);
-    app.get   ('/api/loggedin', loggedIn);
-    app.post  ('/api/register', register);
+    app.post  ('/api/project/login',    passport.authenticate('project'), login);
+    app.post  ('/api/project/logout',   logout);
+    app.get   ('/api/project/loggedin', loggedIn);
+    app.post  ('/api/project/register', register);
 
     app.post  ('/api/assignment/login',    passport.authenticate('assignment'), assignmentLogin);
     app.post  ('/api/assignment/logout',   assignmentLogout);
