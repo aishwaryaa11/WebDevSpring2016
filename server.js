@@ -8,7 +8,7 @@ var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
-var connectionString = 'mongodb://127.0.0.1:27017/webdevdb'; //delete this
+var connectionString = 'mongodb://127.0.0.1:27017/webdevdb';
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
