@@ -1,4 +1,4 @@
-module.exports = function(app, userTModel, diaryModel) {
+module.exports = function(app, userTModel, diaryModel, auth) {
     app.get("/api/project/field/:fieldId", auth, findFieldById);
     app.get("/api/project/field", auth, findAllFields);
     app.get("/api/project/user/:userId/field", auth, findFieldsByUserId);
