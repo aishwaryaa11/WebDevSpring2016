@@ -72,7 +72,7 @@
         var deferred = $q.defer();
 
 
-        $http.get("/api/loggedin").success(function(user)
+        $http.get("/api/project/loggedin").success(function(user)
         {
             $rootScope.errorMessage = null;
 
@@ -94,7 +94,7 @@
     function checkAdmin($http, $q, $location, UserService) {
         var deferred = $q.defer();
 
-        $http.get("/api/loggedin").success(function(user)
+        $http.get("/api/project/loggedin").success(function(user)
         {
             if (user.admin) {
                 console.log(user);

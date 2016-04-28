@@ -1,13 +1,14 @@
-module.exports = function(app, userTModel) {
-    app.post("/api/project/user", register);
-    app.get("/api/project/userCred/:username/:password", findUserByCredentials);
+module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
+
+    var auth = authorized;
+    var admin = admin;
     app.get("/api/project/user", userRouter);
-    app.get("/api/project/user/:id", findUserById);
-    app.get("/api/project/user?username=username", findUserByUsername);
-    app.put("/api/project/user/:id", updateUser);
-    app.delete("/api/project/user/:id", deleteUser);
-    app.get("/api/project/loggedin", loggedIn);
-    //app.post("/api/project/logout", logout);
+    app.get("/api/project/user/:id", auth, findUserById);
+    app.put("/api/project/user/", auth, updateUser);
+    app.delete("/api/project/user/:id", auth, deleteUser);
+    app.get("/api/project/:diaryId/user", auth, findUserByDiaryId);
+    app.get("/api/project/diary/:fieldId/user", auth, findUserByFieldId);
+
 
     function userRouter(req, res) {
         if (req.query.username && req.query.password) {
@@ -19,22 +20,6 @@ module.exports = function(app, userTModel) {
         else {
             getUsers(req, res);
         }
-    }
-
-    function register(req, res) {
-
-        var user = req.body;
-
-        userTModel.createUser(user)
-            .then(
-                function (doc) {
-                    req.session.currentUser = doc;
-                    res.json(doc);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
     }
 
     function getUsers(req, res) {
@@ -52,7 +37,7 @@ module.exports = function(app, userTModel) {
     function findUserById(req, res) {
         var userId = req.params.id;
 
-        userTModel.findUserById(userId)
+        userTModel.findUser(userId)
             .then(
                 function (doc) {
                     res.json(doc);
@@ -63,31 +48,34 @@ module.exports = function(app, userTModel) {
             );
     }
 
-    function loggedIn(req, res) {
-        res.json(req.session.currentUser);
-    }
-    //
-    //function logout(req, res) {
-    //    req.logOut();
-    //}
-
     function updateUser(req, res) {
         var user = req.body;
-        var userId = req.params.id;
 
-        userTModel.updateUser(userId, user)
+        userTModel
+            .findUser(user._id)
             .then(
-                function (na) {
-                    userTModel.findUserById(req.session.currentUser._id)
+                function (user2) {
+                    if (user2.password !== user.password) {
+                        user.password = bcrypt.hashSync(user.password);
+                    }
+                    userTModel.updateUser(user)
                         .then(
-                            function (doc) {
-                                req.session.currentUser = doc;
-                                res.json(doc);
+                            function (na) {
+                                userTModel
+                                    .findUser(user._id)
+                                    .then(
+                                        function (doc) {
+                                            res.json(doc);
+                                        }
+                                    ),
+                                    function (err) {
+                                        res.status(400).send(err);
+                                    }
+                            },
+                            function (err) {
+                                res.status(400).send(err);
                             }
-                        ),
-                        function (err) {
-                            res.status(400).send(err);
-                        }
+                        );
                 },
                 function (err) {
                     res.status(400).send(err);
@@ -126,7 +114,7 @@ module.exports = function(app, userTModel) {
 
     function deleteUser(req, res) {
         var id = req.params.id;
-        userTModel.deleteUserById(id)
+        userTModel.deleteUser(id)
             .then(
                 function (doc) {
                     res.json(doc);
@@ -135,5 +123,55 @@ module.exports = function(app, userTModel) {
                     res.status(400).send(err);
                 }
             );
+    }
+
+    function findUserByDiaryId(req, res) {
+        diaryModel
+            .findDiaryById(req.params.diaryId)
+            .then(
+                function (diary) {
+                    userTModel.findUsersById(diary.userId)
+                        .then(
+                            function (doc) {
+                                res.json(doc);
+                            },
+                            function (err) {
+                                res.status(400).send(err);
+                            }
+                        );
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function findUserByFieldId(req, res) {
+
+        diaryModel
+            .findField(req.params.diaryId)
+            .then(
+                function(field) {
+                    userTModel.findUsersById(field.userId)
+                        .then(
+                            function (doc) {
+                                res.json(doc);
+                            },
+                            function (err) {
+                                res.status(400).send(err);
+                            }
+                        );
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function admin(req, res, next) {
+        if(!req.user.admin) {
+            res.send(403);
+        }
+        next();
     }
 };

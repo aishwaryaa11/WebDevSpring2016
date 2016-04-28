@@ -72,41 +72,41 @@
 
         function logout() {
             setCurrentUser(null);
-            return $http.post("/api/logout");
+            return $http.post("/api/project/logout");
         }
 
         function login(username, password) {
             var cred = {username: username, password: password};
-            return $http.post("/api/login", cred);
+            return $http.post("/api/project/login", cred);
 
         }
 
         function register(user) {
-            return $http.post("/api/register", user);
+            return $http.post("/api/project/register", user);
         }
 
         function findUserByDiaryId(diaryId) {
-            return $http.get("/api/diary/" + diaryId + "/user");
+            return $http.get("/api/project/diary/" + diaryId + "/user");
         }
 
         function adminCreateUser(user) {
-            return $http.post("/api/admin/user", user);
+            return $http.post("/api/project/admin/user", user);
         }
 
         function adminFindAllUsers() {
-            return $http.get("/api/admin/user");
+            return $http.get("/api/project/admin/user");
         }
 
         function adminFindUser(user) {
-            return $http.get("/api/admin/user/" + user._id);
+            return $http.get("/api/project/admin/user/" + user._id);
         }
 
         function adminUpdateUser(user) {
-            return $http.put("/api/admin/user/" + user._id, user);
+            return $http.put("/api/project/admin/user/" + user._id, user);
         }
 
         function adminDeleteUser(user) {
-            return $http.delete("/api/admin/user/" + user._id);
+            return $http.delete("/api/project/admin/user/" + user._id);
         }
 
     }

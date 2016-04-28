@@ -1,11 +1,12 @@
-module.exports = function(app, userModel, diaryModel) {
-    app.get("/api/project/user/:userId/diary", getDiariesForUser);
-    app.get("/api/project/diary/:diaryId", getDiaryById);
-    app.delete("/api/project/diary/:diaryId", deleteDiaryById);
-    app.post("/api/project/user/:userId/diary", createDiaryForUser);
-    app.put("/api/project/diary/:diaryId", updateDiaryById);
+module.exports = function(app, diaryModel, auth) {
+    app.get("/api/project/diary/:diaryId", auth, getDiaryById);
+    app.get("/api/project/diary", auth, getAllDiaries);
+    app.get("/api/project/user/:userId/diary", auth, getDiariesByUserId);
+    app.delete("/api/project/diary/:diaryId", auth, deleteDiaryById);
+    app.post("/api/project/diary", auth, createDiaryForUser);
+    app.put("/api/project/diary", auth, updateDiarybyId);
 
-    function getDiariesForUser(req, res) {
+    function getDiariesByUserId(req, res) {
         var id = req.params.userId;
         diaryModel.findDiariesByUserId(id)
             .then(
@@ -31,6 +32,19 @@ module.exports = function(app, userModel, diaryModel) {
             );
     }
 
+    function getAllDiaries(req, res) {
+        diaryModel
+            .findAllDiaries()
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
     function deleteDiaryById(req, res) {
         var id = req.params.diaryId;
         diaryModel.deleteDiaryById(id)
@@ -45,9 +59,8 @@ module.exports = function(app, userModel, diaryModel) {
     }
 
     function createDiaryForUser(req, res) {
-        var userId = req.params.userId;
         var diary = req.body;
-        diaryModel.createDiaryForUser(userId, diary)
+        diaryModel.createDiaryForUser(diary)
             .then(
                 function (doc) {
                     res.json(doc);
@@ -58,10 +71,9 @@ module.exports = function(app, userModel, diaryModel) {
             );
     }
 
-    function updateDiaryById(req, res) {
-        var id = req.params.diaryId;
+    function updateDiarybyId(req, res) {
         var diary = req.body;
-        diaryModel.updateDiary(id, diary)
+        diaryModel.updateDiary(diary)
             .then(
                 function (doc) {
                     res.json(doc);

@@ -1,13 +1,16 @@
-module.exports = function(app, diaryModel) {
-    app.get("/api/project/diary/:diaryId/field", fieldsForDiaryId);
-    app.get("/api/project/diary/:diaryId/field/:fieldId", getFieldById);
-    app.delete("/api/project/diary/:diaryId/field/:fieldId", deleteFieldById);
-    app.post("/api/project/diary/:diaryId/field", addFieldToDiary);
-    app.put("/api/project/diary/:diaryId/field/:fieldId", updateFieldById);
+module.exports = function(app, userTModel, diaryModel) {
+    app.get("/api/project/field/:fieldId", auth, findFieldById);
+    app.get("/api/project/field", auth, findAllFields);
+    app.get("/api/project/user/:userId/field", auth, findFieldsByUserId);
+    app.delete("/api/project/diary/:diaryId/field/:fieldId", auth, deleteFieldById);
+    app.post("/api/project/diary/:diaryId/field/", auth, addFieldToDiary);
+    app.put("/api/project/diary/:diaryId/field/", auth, updateFieldById);
+    app.get("/api/project/diary/:diaryId/field", auth, findFieldsByDiaryId);
 
-    function fieldsForDiaryId(req, res) {
-        var diaryId = req.params.diaryId;
-        diaryModel.findFieldsByDiaryId(diaryId)
+
+    function findAllFields(req, res) {
+        diaryModel
+            .findAllFields()
             .then(
                 function (doc) {
                     res.json(doc);
@@ -18,10 +21,8 @@ module.exports = function(app, diaryModel) {
             );
     }
 
-    function getFieldById(req, res) {
-        var diaryId = req.params.diaryId;
-        var fieldId = req.params.fieldId;
-        diaryModel.findField(diaryId, fieldId)
+    function findFieldById(req, res) {
+        diaryModel.findField(req.params.fieldId)
             .then(
                 function (doc) {
                     res.json(doc);
@@ -33,9 +34,7 @@ module.exports = function(app, diaryModel) {
     }
 
     function deleteFieldById(req, res) {
-        var diaryId = req.params.diaryId;
-        var fieldId = req.params.fieldId;
-        diaryModel.deleteField(diaryId, fieldId)
+        diaryModel.deleteField(req.params.fieldId)
             .then(
                 function (doc) {
                     res.json(doc);
@@ -48,8 +47,24 @@ module.exports = function(app, diaryModel) {
 
     function addFieldToDiary(req, res) {
         var field = req.body;
+
+        field.created = new Date;
+        diaryModel.createField(req.params.diaryId, field)
+            .then(
+                function (field) {
+                    res.json(field);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function updateFieldById(req, res) {
+        var field = req.body;
+
         var diaryId = req.params.diaryId;
-        diaryModel.createField(diaryId, field)
+        diaryModel.updateField(diaryId, field)
             .then(
                 function (doc) {
                     res.json(doc);
@@ -60,11 +75,31 @@ module.exports = function(app, diaryModel) {
             );
     }
 
-    function updateFieldById(req, res) {
-        var field = req.body;
-        var fieldId = req.params.fieldId;
-        var diaryId = req.params.diaryId;
-        diaryModel.updateField(diaryId, field)
+    function findFieldsByUserId(req, res) {
+        userTModel
+            .findUser(req.params.userId)
+            .then(
+                function (user) {
+                    diaryModel
+                        .findFieldsByUserId(user._id)
+                        .then(
+                            function (doc) {
+                                res.json(doc);
+                            },
+                            function (err) {
+                                res.status(400).send(err);
+                            }
+                        );
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function findFieldsByDiaryId(req, res) {
+        diaryModel
+            .findFieldsByDiaryId(req.params.diaryId)
             .then(
                 function (doc) {
                     res.json(doc);

@@ -1,12 +1,16 @@
-module.exports = function(app, uuid, mongoose, db) {
-    var userTModel = require("./models/user.model.js")(uuid, mongoose, db);
-    var diaryModel = require("./models/diary.model.js")(uuid, mongoose, db);
-    //var photoModel = require("./models/photo.model.js")(uuid, mongoose, db);
+module.exports = function(app, mongoose, db, userTModel, diaryModel, bcrypt) {
 
-    var userService = require("./services/user.service.server.js")(app, userTModel);
-    var diaryService = require("./services/diary.service.server.js")(app, userTModel, diaryModel);
-    var diaryExpandService = require("./services/diary-expand.service.server.js")(app, diaryModel);
-    //var photoService = require("./services/photo.service.server.js")(app, userTModel, photoModel);
-    //var photoExpandService = require("./services/photo-expand.service.server.js")(app, photoModel);
+    var userService = require("./services/user.service.server.js")(app, userTModel, diaryModel, authorized, bcrypt);
+    var diaryService = require("./services/diary.service.server.js")(app, diaryModel, authorized);
+    var diaryExpandService = require("./services/diary-expand.service.server.js")(app, userTModel, diaryModel, authorized);
+    var searchService = require("./services/search.service.server.js") (app, diaryModel, userTModel, authorized);
 
+
+    function authorized (req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
+    }
 };

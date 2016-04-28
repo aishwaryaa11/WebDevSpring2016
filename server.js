@@ -3,7 +3,6 @@ var app = express();
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser  = require('cookie-parser');
-var multer = require('multer');
 var passport = require('passport');
 var uuid = require('node-uuid');
 var mongoose = require('mongoose');
@@ -35,18 +34,18 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(multer());
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 
-var assignmentUserModel = require("./public/assignment/server/models/user.model.js")(mongoose, db);
-var UserModel = require("./public/project/server/models/user.model.js") (mongoose, db);
+var UserModel = require("./public/assignment/server/models/user.model.js")(mongoose, db);
+var DiaryModel = require("./public/project/server/models/diary.model.js") (mongoose, db);
+var UserTModel = require("./public/project/server/models/user.model.js") (mongoose, db);
 
-require("./public/security/security.js") (app, UserModel, assignmentUserModel, bcrypt);
-require("./public/assignment/server/app.js")(app, mongoose, db, assignmentUserModel, bcrypt);
-//require("./public/project/server/app.js") (app, mongoose, db, multer, UserModel, bcrypt);
+require("./public/security/security.js") (app, UserTModel, UserModel, bcrypt);
+require("./public/assignment/server/app.js")(app, mongoose, db, UserModel, bcrypt);
+require("./public/project/server/app.js") (app, mongoose, db, UserTModel, DiaryModel, bcrypt);
 
 app.listen(port, ipaddress);

@@ -1,9 +1,7 @@
 var q = require('q');
 
-module.exports = function (uuid, mongoose, db) {
+module.exports = function (mongoose, db) {
 
-    var DiaryExpandSchema = require("./diary-expand.schema.server.js")(mongoose);
-    var FieldModel = mongoose.model('DiaryExpand', DiaryExpandSchema);
     var DiarySchema = require("./diary.schema.server.js")(mongoose);
     var DiaryModel = mongoose.model('Diary', DiarySchema);
 
@@ -13,20 +11,25 @@ module.exports = function (uuid, mongoose, db) {
         findAllDiaries: findAllDiaries,
         findDiaryById: findDiaryById,
         updateDiary: updateDiary,
-        findDiaryByTitle: findDiaryByTitle,
         findDiariesByUserId: findDiariesByUserId,
         createField: createField,
         deleteField: deleteField,
         findField: findField,
         updateField: updateField,
-        findFieldsByDiaryId: findFieldsByDiaryId
+        findAllFields: findAllFields,
+        findFieldsByDiaryId: findFieldsByDiaryId,
+        findFieldsByUserId: findFieldsByUserId,
+        searchFieldsByName: searchFieldsByName,
+        searchDiariesByName: searchDiariesByName
     };
 
     return api;
 
-    function findDiaryByTitle(title) {
+
+    function searchDiariesByName(term) {
         var deferred = q.defer();
-        DiaryModel.findOne({title: title}, function(err, doc) {
+
+        DiaryModel.find({"title": {$regex: term, $options: "i"}}, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             }
@@ -34,8 +37,25 @@ module.exports = function (uuid, mongoose, db) {
                 deferred.resolve(doc);
             }
         });
-
+        return deferred.promise;
     }
+
+
+    function searchFieldsByName(term) {
+        var deferred = q.defer();
+
+        DiaryModel.find({"fields.title": {$regex: term, $options: "i"}}, {"fields":true}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
+    }
+
+
 
     function findDiariesByUserId(userId) {
         var deferred = q.defer();
@@ -92,11 +112,11 @@ module.exports = function (uuid, mongoose, db) {
         return deferred.promise;
     }
 
-    function createDiaryForUser (userId, newDiary) {
+    function createDiaryForUser (newDiary) {
         var nDiary = {
             title: newDiary.title,
             notes: newDiary.notes,
-            userId: userId,
+            userId: newDiary.userId,
             fields: [],
             created: (new Date).getTime(),
             updated: (new Date).getTime()
@@ -116,7 +136,7 @@ module.exports = function (uuid, mongoose, db) {
         return deferred.promise;
     }
 
-    function updateDiary (id, diary) {
+    function updateDiary (diary) {
         var newDiary = {
             userId: diary.userId,
             title: diary.title,
@@ -128,8 +148,7 @@ module.exports = function (uuid, mongoose, db) {
 
         var deferred = q.defer();
 
-        diary.updated = (new Date).getTime();
-        DiaryModel.findByIdAndUpdate(id, {$set:newDiary}, {new: true, upsert: true}, function (err, doc) {
+        DiaryModel.findByIdAndUpdate(diary._id, {$set:newDiary}, {new: true, upsert: true}, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             }
@@ -140,6 +159,7 @@ module.exports = function (uuid, mongoose, db) {
 
         return deferred.promise;
     }
+
 
     function createField(diaryId, field) {
         var deferred = q.defer();
@@ -154,12 +174,10 @@ module.exports = function (uuid, mongoose, db) {
         return deferred.promise;
     }
 
+
     function deleteField(diaryId, fieldId) {
         var deferred = q.defer();
-        DiaryModel.findByIdAndUpdate(diaryId, {
-                $pull: {fields:
-                {_id: fieldId}
-                }},
+        DiaryModel.findByIdAndUpdate(diaryId, {$pull: {fields: {_id: fieldId} }},
             function (err, doc) {
                 if (err) {
                     deferred.reject(err);
@@ -172,20 +190,15 @@ module.exports = function (uuid, mongoose, db) {
         return deferred.promise;
     }
 
-    function findField(diaryId, fieldId) {
+    function findField(fieldId) {
         var deferred = q.defer();
-        DiaryModel.findById(diaryId, function (err, doc) {
+        DiaryModel.findOne({"fields._id" : fieldId}, {"fields.$": 1}, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             }
             else {
-                for (f in doc.fields) {
-                    if (doc.fields[f]._id === fieldId) {
-                        deferred.resolve(doc.fields[f]);
-                        return deferred.promise;
-                    }
-                }
-                deferred.reject("Could not find entry");
+                var field = doc.fields[0];
+                deferred.resolve(field);
             }
         });
         return deferred.promise;
@@ -193,7 +206,7 @@ module.exports = function (uuid, mongoose, db) {
 
     function findFieldsByDiaryId(diaryId) {
         var deferred = q.defer();
-        DiaryModel.findById(diaryId, function (err, doc) {
+        DiaryModel.findOne({_id : diaryId}, {'fields':true,'_id':false}, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             }
@@ -201,18 +214,50 @@ module.exports = function (uuid, mongoose, db) {
                 deferred.resolve(doc.fields);
             }
         });
-
         return deferred.promise;
     }
 
     function updateField(diaryId, field) {
         var deferred = q.defer();
-        DiaryModel.update({_id: diaryId, "fields._id" : field._id}, {$set: {"fields.$": field}}, {new: true}, function (err, doc) {
+        DiaryModel.update({_id: diaryId, "fields._id" : field._id}, {$set: {"fields.$": field}}, {new: true},
+            function (err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                }
+                else {
+                    deferred.resolve(doc)
+                }
+            });
+        return deferred.promise;
+    }
+
+    function findAllFields() {
+        var deferred = q.defer();
+        DiaryModel.find({}, {'fields':true}, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             }
             else {
-                deferred.resolve(doc)
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
+    }
+
+
+    function findFieldsByUserId(userId) {
+        var deferred = q.defer();
+        DiaryModel.find({"fields.userId" : {$in : [userId]}}, {"fields":true}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            }
+            else {
+                if (doc[0]) {
+                    deferred.resolve(doc[0].fields)
+                }
+                else {
+                    deferred.resolve(doc[0]);
+                }
             }
         });
         return deferred.promise;
