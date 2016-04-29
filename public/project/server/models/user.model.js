@@ -96,7 +96,7 @@ module.exports = function (mongoose, db) {
 
     function createUser(newUser) {
         var deferred = q.defer();
-        user.admin = false;
+        newUser.admin = false;
         UserTModel.create(newUser, function(err, doc) {
             if (err) {
                 deferred.reject(err);

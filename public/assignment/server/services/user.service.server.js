@@ -1,5 +1,5 @@
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+//var passport = require('passport');
+//var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function(app, userModel) {
@@ -21,48 +21,48 @@ module.exports = function(app, userModel) {
     app.put("/api/assignment/admin/user/:userId", auth, admin, updateUser);
 
 
-    passport.use(new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
-
-    function localStrategy(username, password, done){
-
-        userModel
-            .findUserByUsername(username)
-            .then(
-                function (user) {
-                    console.log(user);
-                    if (user && bcrypt.compareSync(password, user.password)) {
-                        return done(null, user);
-                    }
-                    else {
-                        return done(null, false);
-                    }
-                },
-                function (err){
-                    if (err) { return done (err); }
-                }
-            );
-    }
-
-    function serializeUser(user, done){
-        delete user.password;
-        done(null, user);
-    }
-
-    function deserializeUser(user, done){
-        userModel
-            .findUserById(user._id)
-            .then(
-                function (user) {
-                    delete user.password;
-                    done(null, user);
-                },
-                function (err) {
-                    done(err, null);
-                }
-            )
-    }
+    //passport.use(new LocalStrategy(localStrategy));
+    //passport.serializeUser(serializeUser);
+    //passport.deserializeUser(deserializeUser);
+    //
+    //function localStrategy(username, password, done){
+    //
+    //    userModel
+    //        .findUserByUsername(username)
+    //        .then(
+    //            function (user) {
+    //                console.log(user);
+    //                if (user && bcrypt.compareSync(password, user.password)) {
+    //                    return done(null, user);
+    //                }
+    //                else {
+    //                    return done(null, false);
+    //                }
+    //            },
+    //            function (err){
+    //                if (err) { return done (err); }
+    //            }
+    //        );
+    //}
+    //
+    //function serializeUser(user, done){
+    //    delete user.password;
+    //    done(null, user);
+    //}
+    //
+    //function deserializeUser(user, done){
+    //    userModel
+    //        .findUserById(user._id)
+    //        .then(
+    //            function (user) {
+    //                delete user.password;
+    //                done(null, user);
+    //            },
+    //            function (err) {
+    //                done(err, null);
+    //            }
+    //        )
+    //}
 
 
 
