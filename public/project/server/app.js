@@ -12,5 +12,5 @@ module.exports = function(app, mongoose, db, userTModel, diaryModel, bcrypt) {
         } else {
             next();
         }
-    }
+    }//
 };
