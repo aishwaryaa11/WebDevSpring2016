@@ -10,9 +10,5 @@
             ng-class="{'active': model.$location.url() == '/diary' || model.$location.url().indexOf('/diary-expand') >= 0}">
             <a href="#/diary">Diaries</a>
         </li>
-        <li ng-show="currentUser"
-            ng-class="{'active': model.$location.url() == '/photo' || model.$location.url().indexOf('/photo-expand') >= 0}">
-            <a href="#/photo">Photos</a>
-        </li>
     </ul>
 </div>
