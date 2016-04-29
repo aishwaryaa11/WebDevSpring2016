@@ -2,13 +2,23 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
 
     var auth = authorized;
     var admin = admin;
-    app.get("/api/project/user", userRouter);
+    app.post("/api/project/user", userRouter);
     app.get("/api/project/user/:id", auth, findUserById);
+    app.get("/api/project/user", login);
     app.put("/api/project/user/", auth, updateUser);
     app.delete("/api/project/user/:id", auth, deleteUser);
     app.get("/api/project/:diaryId/user", auth, findUserByDiaryId);
     app.get("/api/project/diary/:fieldId/user", auth, findUserByFieldId);
 
+    function login(req, res) {
+        var username = req.query.username;
+        var password = req.query.password;
+        var response = {
+            username: username,
+            password: password
+        };
+        res.json(response);
+    }
 
     function userRouter(req, res) {
         if (req.query.username && req.query.password) {
