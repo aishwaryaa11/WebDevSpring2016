@@ -44,7 +44,7 @@ var UserModel = require("./public/assignment/server/models/user.model.js")(mongo
 var DiaryModel = require("./public/project/server/models/diary.model.js") (mongoose, db);
 var UserTModel = require("./public/project/server/models/user.model.js") (mongoose, db);
 
-require("./public/security/security.js") (app, UserTModel, UserModel, bcrypt);
+//require("./public/security/security.js") (app, UserTModel, UserModel, bcrypt);
 require("./public/assignment/server/app.js")(app, mongoose, db, UserModel, bcrypt);
 require("./public/project/server/app.js") (app, mongoose, db, UserTModel, DiaryModel, bcrypt);
 
