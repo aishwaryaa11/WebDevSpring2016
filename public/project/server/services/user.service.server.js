@@ -4,20 +4,41 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
     var admin = admin;
     app.post("/api/project/user", userRouter);
     app.get("/api/project/user/:id", auth, findUserById);
-    app.get("/api/project/user", login);
+    //app.post("/api/project/login", auth, login);
+    app.post("/api/project/register", register);
     app.put("/api/project/user/", auth, updateUser);
     app.delete("/api/project/user/:id", auth, deleteUser);
     app.get("/api/project/:diaryId/user", auth, findUserByDiaryId);
     app.get("/api/project/diary/:fieldId/user", auth, findUserByFieldId);
 
-    function login(req, res) {
+    //function login(req, res) {
+    //    var username = req.query.username;
+    //    var password = req.query.password;
+    //    var response = {
+    //        username: username,
+    //        password: password
+    //    };
+    //    res.send(response);
+    //    //findUserByCredentials(req, res);
+    //}
+
+    function register(req,res) {
         var username = req.query.username;
-        var password = req.query.password;
-        var response = {
-            username: username,
-            password: password
-        };
+            var password = req.query.password;
+            var response = {
+                username: username,
+                password: password
+            };
         res.json(response);
+        //userTModel.createUser(nUser)
+        //    .then(
+        //        function(doc) {
+        //            res.json(doc);
+        //        },
+        //        function (err) {
+        //            res.status(400).send(err);
+        //        }
+        //    );
     }
 
     function userRouter(req, res) {

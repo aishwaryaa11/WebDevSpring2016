@@ -57,16 +57,23 @@
             //        }
             //    });
 
-
+            var newUser = {
+                username: user.username,
+                password: user.password,
+                email: user.email
+            };
             UserService
-                .createUser(user)
+                .register(newUser)
                 .then(function(response) {
-                    if (response.data.stringify.indexOf("Err") !== -1){
-                        vm.message = "User already exists";
-                        return ;
-                    }
+                    //if (response.data){
+                    //    if (response.data.stringify.indexOf("Err") !== -1){
+                    //        vm.message = "User already exists";
+                    //        return ;
+                    //    }
+                    //}
+
                     var newUser = response.data;
-                    if (newUser) {
+                    if ((newUser) && (newUser !== {})) {
                         UserService.setCurrentUser(newUser);
                         $location.path("/profile");
                     }
