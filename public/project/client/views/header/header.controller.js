@@ -4,9 +4,9 @@
         .module("Travelogue")
         .controller("HeaderController", headerController);
 
-    function headerController(UserService, $location) {
+    function headerController(UserService, $location, $scope) {
         var vm = this;
-        vm.logout = logout;
+        $scope.logout = logout;
         vm.search = search;
         vm.searchTerm = "";
 

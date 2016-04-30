@@ -112,7 +112,7 @@ module.exports = function (mongoose, db) {
     function updateUser(userId, user) {
         var newUser = {
             username: user.username,
-            password: user.password,
+            // password: user.password,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,

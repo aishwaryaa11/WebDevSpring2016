@@ -18,6 +18,7 @@
                 .then(function(response) {
                     var currentUser = response.data;
                     if (currentUser) {
+                        delete currentUser.password;
                         UserService.setCurrentUser(currentUser);
                         vm.currentUser = currentUser;
                     }

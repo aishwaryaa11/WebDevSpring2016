@@ -62,21 +62,22 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
         console.log("updated user:"+user);
         console.log(userId);
 
-        user.password = bcrypt.hashSync(user.password);
+        // user.password = bcrypt.hashSync(user.password);
 
         userTModel.updateUser(userId, user)
             .then(
                 function (na) {
-                    userTModel.findUserById(userId)
-                        .then(
-                            function (doc) {
-                                console.log(doc);
-                                res.json(doc);
-                            }
-                        ),
-                        function (err) {
-                            res.status(400).send(err);
-                        }
+                    res.json(na);
+                    // userTModel.findUserById(userId)
+                    //     .then(
+                    //         function (doc) {
+                    //             console.log(doc);
+                    //             res.json(doc);
+                    //         }
+                    //     ),
+                    //     function (err) {
+                    //         res.status(400).send(err);
+                    //     }
                 },
                 function (err) {
                     res.status(400).send(err);
