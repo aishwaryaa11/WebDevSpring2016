@@ -54,7 +54,7 @@
                     checkLoggedIn: checkLoggedIn
                 }
             })
-            .when("/diary/:diaryId/diary-expand", {
+            .when("/diary/:diaryId/fields", {
                 templateUrl: "views/diary/diary-expand.view.html",
                 controller: "DiaryExpandController",
                 controllerAs: "model",

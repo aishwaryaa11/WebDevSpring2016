@@ -21,7 +21,9 @@
                     <a href="#/home">logout</a></li>
             </ul>
             <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
+                <input ng-model="model.searchTerm" type="text" class="form-control" placeholder="Search...">
+                <br class="visible-xs">
+                <button class="btn btn-info" ng-click="model.search(model.searchTerm)">Search</button>
             </form>
         </div>
     </div>

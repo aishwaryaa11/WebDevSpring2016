@@ -80,6 +80,12 @@ a {
 .main {
   padding: 20px;
 }
+
+.input-group {
+    width: 70%;
+}
+
+
 @media (min-width: 768px) {
   .main {
     padding-right: 40px;
@@ -88,7 +94,7 @@ a {
 }
 .main .page-header {
   margin-top: 0;
-    width: auto;
+    width: 200%;
     color: #fff;
     background-color: #000;
 }
@@ -122,7 +128,6 @@ a {
 #cf img.top:hover {
     opacity:0;
 }
-
 
 /*
  * Placeholder dashboard ideas

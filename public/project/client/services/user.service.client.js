@@ -55,7 +55,7 @@
         }
 
         function updateUser(userId, user) {
-            return $http.put("/api/project/user/", userId, user);
+            return $http.put("/api/project/user/" + userId, user);
         }
 
         function getProfile() {

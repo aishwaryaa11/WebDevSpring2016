@@ -1,10 +1,10 @@
 "use strict";
 module.exports = function(app, diaryModel, userTModel) {
-    app.get("/api/project/user/:userId/search", search);
+    app.get("/api/project/user/:userId/search?term=:term", search);
 
     function search(req, res) {
-        var term = req.query.term;
-        var userId = req.params.userId;
+        var term = req.params.term;
+
         var users = [];
         var results = {};
 

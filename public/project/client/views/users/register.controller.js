@@ -42,12 +42,7 @@
                 username: user.username,
                 password: user.password,
                 email: user.email,
-                firstName: "",
-                lastName: "",
-                location: "",
-                admin: false,
-                placesbeento: "",
-                placeswannago: ""
+                type: 'project'
             };
             UserService
                 .register(newUser)
@@ -58,10 +53,8 @@
                         return ;
                     }
                     if (newUser) {
-                        console.log("me");
                         UserService.setCurrentUser(newUser);
                         $location.path("/profile");
-                        return ;
                     }
                 });
         }

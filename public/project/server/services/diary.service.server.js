@@ -3,7 +3,7 @@ module.exports = function(app, diaryModel, auth) {
     app.get("/api/project/diary", auth, getAllDiaries);
     app.get("/api/project/user/:userId/diary", auth, getDiariesByUserId);
     app.delete("/api/project/diary/:diaryId", auth, deleteDiaryById);
-    app.post("/api/project/diary", auth, createDiaryForUser);
+    app.post("/api/project/diary/:userId", auth, createDiaryForUser);
     app.put("/api/project/diary", auth, updateDiarybyId);
 
     function getDiariesByUserId(req, res) {
@@ -11,7 +11,7 @@ module.exports = function(app, diaryModel, auth) {
         diaryModel.findDiariesByUserId(id)
             .then(
                 function (doc) {
-                    res.json(doc);
+                    res.send(doc);
                 },
                 function (err) {
                     res.status(400).send(err);
@@ -60,10 +60,11 @@ module.exports = function(app, diaryModel, auth) {
 
     function createDiaryForUser(req, res) {
         var diary = req.body;
-        diaryModel.createDiaryForUser(diary)
+        var userid = req.params.userId;
+        diaryModel.createDiaryForUser(userid, diary)
             .then(
                 function (doc) {
-                    res.json(doc);
+                    res.send(doc);
                 },
                 function (err) {
                     res.status(400).send(err);

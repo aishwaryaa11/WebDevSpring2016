@@ -29,6 +29,7 @@
         init();
 
         function goToFields(diaryId) {
+            vm.diary= DiaryService.findDiaryById(diaryId);
             $location.url("#/diary/" + diaryId + "/fields");
         }
 
@@ -39,6 +40,7 @@
         }
 
         function addDiary (diary) {
+            console.log(diary.userId);
             DiaryService
                 .createDiaryForUser($rootScope.currentUser._id, diary)
                 .then(init);
@@ -46,7 +48,7 @@
 
         function updateDiary (diary) {
             DiaryService
-                .updateDiaryById(diary._id, diary)
+                .updateDiaryById(diary)
                 .then(init);
         }
 

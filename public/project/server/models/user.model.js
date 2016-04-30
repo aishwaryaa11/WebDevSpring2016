@@ -96,7 +96,7 @@ module.exports = function (mongoose, db) {
 
     function createUser(newUser) {
         var deferred = q.defer();
-        newUser.admin = false;
+        newUser.type = "project";
         UserTModel.create(newUser, function(err, doc) {
             if (err) {
                 deferred.reject(err);
@@ -119,7 +119,8 @@ module.exports = function (mongoose, db) {
             location: user.location,
             admin: user.admin,
             placesbeento: user.placesbeento,
-            placeswannago: user.placeswannago
+            placeswannago: user.placeswannago,
+            type: user.type
         };
 
         var deferred = q.defer();

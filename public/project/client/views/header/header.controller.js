@@ -4,13 +4,20 @@
         .module("Travelogue")
         .controller("HeaderController", headerController);
 
-    function headerController(UserService, $location, $scope) {
-        $scope.logout = logout;
-        $scope.$location = $location;
+    function headerController(UserService, $location) {
+        var vm = this;
+        vm.logout = logout;
+        vm.search = search;
+        vm.searchTerm = "";
 
         function logout() {
             UserService.setCurrentUser(null);
             UserService.logout();
+        }
+
+        function search(searchTerm){
+            $location.path("/search");
+            $location.search("query", searchTerm);
         }
     }
 })();

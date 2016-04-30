@@ -7,9 +7,10 @@ module.exports = function(mongoose) {
         lastName: String,
         email: String,
         location: String,
-        admin: Boolean,
+        admin: String,
         placesbeento: String,
-        placeswannago: String
+        placeswannago: String,
+        type: String
     }, {collection: 'project.users'});
     return UserSchema;
 };

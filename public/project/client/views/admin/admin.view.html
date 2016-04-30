@@ -1,6 +1,7 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="AdminController as model">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main" ng-controller="AdminController as model">
     <h1 class="page-header">Admin</h1>
-    <h2 class="title">Users</h2>
+</div>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main" ng-controller="AdminController as model">
     <table class="table table-striped table-responsive">
         <thead>
         <tr>
@@ -23,7 +24,7 @@
                     <span ng-show="model.ascending" class="glyphicon glyphicon-triangle-bottom"></span>
                 </a>
             </th>
-            <th>Role</th>
+            <th>Admin</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -33,7 +34,7 @@
             <td><input type="password" ng-model="model.user.password" class="form-control" id="password" placeholder="password"></td>
             <td><input type="text" ng-model="model.user.firstName" class="form-control" id="firstname" placeholder="first name"></td>
             <td><input type="text" ng-model="model.user.lastName" class="form-control" id="lastname" placeholder="last name"></td>
-            <td><input type="text" ng-model="model.user.role" class="form-control" id="role" placeholder="role"></td>
+            <td><input type="text" ng-model="model.user.admin" class="form-control" id="admin" placeholder="admin"></td>
             <td width="100px">
                 <div class="input-group">
                     <button ng-click="model.addUser(model.user)" class="btn btn-primary">
@@ -50,12 +51,14 @@
             <td></td>
             <td>{{u.firstName}}</td>
             <td>{{u.lastName}}</td>
-            <td>{{u.role}}</td>
+            <td>{{u.admin}}</td>
             <td>
                 <div class="input-group">
                     <button ng-click="model.deleteUser(u)" class="btn btn-primary">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
+                </div>
+                <div class="input-group">
                     <button ng-click="model.selectUser($index)" class="btn btn-primary">
                         <span class="glyphicon glyphicon-cog"></span>
                     </button>

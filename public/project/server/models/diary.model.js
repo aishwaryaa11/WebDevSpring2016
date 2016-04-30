@@ -112,11 +112,11 @@ module.exports = function (mongoose, db) {
         return deferred.promise;
     }
 
-    function createDiaryForUser (newDiary) {
+    function createDiaryForUser (userid, newDiary) {
         var nDiary = {
             title: newDiary.title,
             notes: newDiary.notes,
-            userId: newDiary.userId,
+            userId: userid,
             fields: [],
             created: (new Date).getTime(),
             updated: (new Date).getTime()

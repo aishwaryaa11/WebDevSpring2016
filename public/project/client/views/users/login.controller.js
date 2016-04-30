@@ -18,15 +18,15 @@
         function login(user) {
             if(!user) {
                 vm.message = "User does not exist";
-                return;
+                return ;
             }
             UserService
                 .findUserByCredentials(user.username, user.password)
                 .then(function(response) {
                     var userTemp = response.data;
-                    if (userTemp) {
+                    if (userTemp !== '0') {
                         UserService.setCurrentUser(userTemp);
-                        if (userTemp.roles != null && userTemp.roles.indexOf("admin") >= 0) {
+                        if (userTemp.admin == true) {
                             $location.path("/admin");
                             //return ;
                         } else {
@@ -35,7 +35,7 @@
                         }
                     } else {
                         vm.message = "User does not exist";
-                        //return ;
+                        return ;
                     }
                 });
 

@@ -3,7 +3,7 @@
         .module("Travelogue")
         .controller("DiaryExpandController", diaryExpandController);
 
-    function diaryExpandController(FieldService, FormService, $routeParams) {
+    function diaryExpandController(diaryExpandService, DiaryService, $routeParams) {
         var vm = this;
         vm.currentField = null;
         vm.eField = null;
@@ -18,16 +18,16 @@
                 'Multi Line Text Field',
             ];
 
-        var formId = "000";
-        if ($routeParams.formId) {
-            formId = $routeParams.formId;
+        var diaryId = "000";
+        if ($routeParams.diaryId) {
+            diaryId = $routeParams.diaryId;
         }
 
         vm.sortableOptions = {
             orderChanged: function(e) {
-                vm.form.fields = vm.fields;
-                FormService
-                    .updateFormById(formId, vm.form)
+                vm.diary.fields = vm.fields;
+                DiaryService
+                    .updateDiaryById(diaryId, vm.diary)
                     .then(init);
             }
         };
@@ -39,17 +39,17 @@
             ];
 
         function init() {
-            FieldService
-                .getFieldsForForm(formId)
+            diaryExpandService
+                .getFieldsForDiary(diaryId)
                 .then(function (response) {
                     vm.fields = response.data;
                     vm.eField = null;
                 });
-            FormService
-                .findFormById(formId)
+            DiaryService
+                .findDiaryById(diaryId)
                 .then(function (response)
                 {
-                    vm.form = response.data;
+                    vm.diary = response.data;
                 })
         }
 
@@ -57,22 +57,22 @@
 
         function sendEdit(field) {
             vm.currentField = null;
-            FieldService
-                .updateField(formId, field._id, field)
+            diaryExpandService
+                .updateField(diaryId, field._id, field)
                 .then(init);
         }
 
         function reorder() {
-            vm.form.fields = vm.fields;
-            FormService
-                .updateFormById(formId, vm.form)
+            vm.diary.fields = vm.fields;
+            DiaryService
+                .updateDiaryById(diaryId, vm.diary)
                 .then(init);
         }
 
         function deleteField(field) {
             vm.currentField = null;
-            FieldService
-                .deleteFieldFromForm(formId, field._id)
+            diaryExpandService
+                .deleteFieldFromDiary(diaryId, field._id)
                 .then(init);
         }
 
@@ -86,10 +86,10 @@
         }
 
         function addField(fieldType) {
-            var field = {"label": "", "type": translateFieldType(fieldType), "placeholder": "", "options": null};
+            var field = {"title": "", "type": translateFieldType(fieldType), "placeholder": "", "options": null};
             console.log(field);
-            FieldService
-                .createFieldForForm(formId, field)
+            diaryExpandService
+                .createFieldForDiary(diaryId, field)
                 .then(init);
         }
 
@@ -106,8 +106,8 @@
 
         function commitEdit(field) {
             vm.eField = field;
-            FieldService
-                .updateField(formId, vm.eField._id, vm.eField)
+            diaryExpandService
+                .updateField(diaryId, vm.eField._id, vm.eField)
                 .then(init);
         }
     }

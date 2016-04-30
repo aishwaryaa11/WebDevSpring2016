@@ -18,7 +18,7 @@
         return service;
 
         function createDiaryForUser(userId, diary) {
-            return $http.post("/api/project/user/" + userId + "/diary", diary);
+            return $http.post("/api/project/diary/" + userId, diary);
         }
 
         function findAllDiariesForUser(userId) {
@@ -37,8 +37,8 @@
             return $http.delete("/api/project/diary/" + diaryId);
         }
 
-        function updateDiaryById(diaryId, newDiary) {
-            return $http.put("/api/project/diary/" + diaryId, newDiary);
+        function updateDiaryById(newDiary) {
+            return $http.put("/api/project/diary/", newDiary);
         }
     }
 })();

@@ -1,25 +1,27 @@
-<div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="DiaryExpandController">
+<div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-1 main" ng-controller="DiaryExpandController">
     <h1 class="page-header">{{model.diary.title}}</h1>
+</div>
+<div class="col-sm-10 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="DiaryExpandController">
     <ul class="nav nav-tabs">
-        <li role="presentation"><a href="#/forms">Diary</a></li>
+        <li role="presentation"><a href="#/diary">Diary</a></li>
         <li role="presentation" class="active"><a href="#/fields">Expanded</a></li>
     </ul>
     <br>
     <table class="table table-responsive">
         <tbody ng-model="model.fields"  as-sortable="model.sortableOptions">
-        <tr ng-switch="field.type" ng-repeat="field in model.fields" as-sortable-item>
+        <tr ng-switch="field.options" ng-repeat="field in model.fields" as-sortable-item>
             <td ng-switch-when="TEXT">
                 <label>{{field.label}}</label>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="{{field.placeholder}}">
-                    <div class="input-group-btn" ng-include="'views/forms/buttons.html'"></div>
+                    <div class="input-group-btn" ng-include="'buttons.html'"></div>
                 </div>
             </td>
             <td ng-switch-when="TEXTAREA">
                 <label>{{field.label}}</label>
                 <div class="input-group">
                     <textarea class="form-control" placeholder="{{field.placeholder}}"></textarea>
-                    <div class="input-group-btn" ng-include="'views/forms/buttons.html'"></div>
+                    <div class="input-group-btn" ng-include="'buttons.html'"></div>
                 </div>
             </td>
             <br>
