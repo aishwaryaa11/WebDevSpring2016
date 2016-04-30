@@ -88,7 +88,8 @@ module.exports = function(app, projectUserModel, assignmentUserModel, bcrypt) {
     function login(req, res) {
         var user = req.user;
         delete user.password;
-        res.json(user);
+        console.log(user);
+        res.send(user);
     }
 
     //function assignmentLogin(req, res) {
@@ -100,6 +101,7 @@ module.exports = function(app, projectUserModel, assignmentUserModel, bcrypt) {
     function loggedIn(req, res) {
         console.log("logged in");
         console.log("this is req.user"+req.user);
+        console.log(req.isAuthenticated());
         res.send(req.isAuthenticated() ? req.user : '0');
 
     }

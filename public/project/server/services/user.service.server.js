@@ -73,7 +73,7 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
         userTModel.findAllUsers()
             .then(
                 function (doc) {
-                    res.json(doc);
+                    res.send(doc);
                 },
                 function (err) {
                     res.status(400).send(err);
@@ -88,7 +88,7 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
             .then(
                 function (doc) {
                     delete doc.password;
-                    res.json(doc);
+                    res.send(doc);
                 },
                 function (err) {
                     res.status(400).send(err);
@@ -144,7 +144,7 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
         userTModel.findUserByUsername(uName)
             .then(
                 function (doc) {
-                    res.json(doc);
+                    res.send(doc);
                 },
                 function (err) {
                     res.status(400).send(err);
@@ -157,7 +157,7 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
         userTModel.deleteUser(id)
             .then(
                 function (doc) {
-                    res.json(doc);
+                    res.send(doc);
                 },
                 function (err) {
                     res.status(400).send(err);
@@ -173,7 +173,7 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
                     userTModel.findUsersById(diary.userId)
                         .then(
                             function (doc) {
-                                res.json(doc);
+                                res.send(doc);
                             },
                             function (err) {
                                 res.status(400).send(err);
@@ -195,7 +195,7 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
                     userTModel.findUsersById(field.userId)
                         .then(
                             function (doc) {
-                                res.json(doc);
+                                res.send(doc);
                             },
                             function (err) {
                                 res.status(400).send(err);
