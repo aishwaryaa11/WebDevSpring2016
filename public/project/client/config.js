@@ -80,15 +80,16 @@
                 console.log(user);
                 UserService.setCurrentUser(user);
                 deferred.resolve();
+                return deferred.promise;
             }
             else {
                 console.log(user);
                 $rootScope.errorMessage = "You need to log in.";
                 deferred.reject();
                 $location.url("/home")
+                return deferred.promise;
             }
         });
-        return deferred.promise;
     }
 
     function checkAdmin($http, $q, $location, UserService) {

@@ -21,7 +21,7 @@
                 return;
             }
             UserService
-                .login(user.username, user.password)
+                .findUserByCredentials(user.username, user.password)
                 .then(function(response) {
                     var userTemp = response.data;
                     if (userTemp) {

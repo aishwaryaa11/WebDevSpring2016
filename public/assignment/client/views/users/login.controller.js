@@ -28,6 +28,7 @@
                         UserService.setCurrentUser(userTemp);
                         if (userTemp.roles != null && userTemp.roles.indexOf("admin") >= 0) {
                             $location.path("/admin");
+
                         } else {
                             $location.path("/profile");
                         }
@@ -35,6 +36,7 @@
                         vm.message = "User does not exist";
                     }
                 });
+            return ;
         }
     }
 })();

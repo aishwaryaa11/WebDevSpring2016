@@ -7,7 +7,7 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
     var admin = admin;
     app.post("/api/project/user", userRouter);
     app.get("/api/project/user/:id", auth, findUserById);
-    app.put("/api/project/user/", auth, updateUser);
+    app.put("/api/project/user/userId", auth, updateUser);
     app.delete("/api/project/user/:id", auth, deleteUser);
     app.get("/api/project/:diaryId/user", auth, findUserByDiaryId);
     app.get("/api/project/diary/:fieldId/user", auth, findUserByFieldId);
@@ -87,6 +87,7 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
         userTModel.findUser(userId)
             .then(
                 function (doc) {
+                    delete doc.password;
                     res.json(doc);
                 },
                 function (err) {
@@ -97,32 +98,23 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
 
     function updateUser(req, res) {
         var user = req.body;
+        var userId = req.params.userId;
 
-        userTModel
-            .findUser(user._id)
+        user.password = bcrypt.hashSync(user.password);
+
+        userTModel.updateUser(userId, user)
             .then(
-                function (user2) {
-                    if (user2.password !== user.password) {
-                        user.password = bcrypt.hashSync(user.password);
-                    }
-                    userTModel.updateUser(user)
+                function (na) {
+                    userTModel.findUserById(req.user._id)
                         .then(
-                            function (na) {
-                                userTModel
-                                    .findUser(user._id)
-                                    .then(
-                                        function (doc) {
-                                            res.json(doc);
-                                        }
-                                    ),
-                                    function (err) {
-                                        res.status(400).send(err);
-                                    }
-                            },
-                            function (err) {
-                                res.status(400).send(err);
+                            function (doc) {
+                                console.log(doc);
+                                res.json(doc);
                             }
-                        );
+                        ),
+                        function (err) {
+                            res.status(400).send(err);
+                        }
                 },
                 function (err) {
                     res.status(400).send(err);
@@ -140,6 +132,7 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
                 function (doc) {
                     req.session.currentUser = doc;
                     res.json(doc);
+                    res.send(doc);
                 },
                 function (err) {
                     res.status(400).send(err);

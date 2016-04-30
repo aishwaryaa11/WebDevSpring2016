@@ -25,16 +25,9 @@
         init();
 
         function update(user) {
-            UserService
-                .updateUser(vm.currentUser._id, user)
-                .then(function(response) {
-                    var userTemp = response.data;
-                    if (userTemp) {
-                        vm.message = "Successfully updated user";
-                        UserService.setCurrentUser(userTemp);
-                    } else {
-                        vm.error = "Unable to update user";
-                    }
+            UserService.updateUser(user._id, user)
+                .then(function (response) {
+                    init();
                 });
         }
     }

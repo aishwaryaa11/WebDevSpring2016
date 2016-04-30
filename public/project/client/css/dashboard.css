@@ -1,5 +1,6 @@
 body {
-  padding-top: 50px;
+  padding-top: 60px;
+    overflow-x: hidden;
 }
 
 a {
@@ -11,8 +12,8 @@ a {
  */
 
 .sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  padding-bottom: 0px;
+  border-bottom: 0px solid #eee;
 }
 
 /*
@@ -20,6 +21,7 @@ a {
  * Hide default border to remove 1px line.
  */
 .navbar-fixed-top {
+    background-color: #000;
   border: 0;
 }
 
@@ -31,10 +33,10 @@ a {
 .sidebar {
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 300px) {
   .sidebar {
     position: fixed;
-    top: 51px;
+    top: 60px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -42,9 +44,13 @@ a {
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
-    border-right: 1px solid #eee;
+    background-color: #000;
+    border-right: 0px solid #eee;
   }
+}
+
+* {
+    box-sizing: inherit;
 }
 
 /* Sidebar navigation */
@@ -60,7 +66,7 @@ a {
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #fff;
+  color: #000;
   background-color: #428bca;
 }
 
@@ -68,6 +74,8 @@ a {
 /*
  * Main content
  */
+
+
 
 .main {
   padding: 20px;
@@ -80,22 +88,34 @@ a {
 }
 .main .page-header {
   margin-top: 0;
+    width: auto;
+    color: #fff;
+    background-color: #000;
 }
 
 
 #cf {
-    position:relative;
+    position:absolute;
     height:281px;
     width:450px;
-    margin:0 auto;
+    margin:0;
+}
+
+.form-control {
+    display: block;
+    width: 90%;
+    height: 30px;
 }
 
 #cf img {
     position:absolute;
-    left:0;
+    align: left;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
     -webkit-transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -o-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 5s ease-in-out;
+    -o-transition: opacity 5s ease-in-out;
     transition: opacity 1s ease-in-out;
 }
 
@@ -136,6 +156,10 @@ a {
     bottom: 15px;
     right: 0;
   }
+  .nav-sidebar {
+      width: 100px;
+  }
+
 }
 
 #myhandle {

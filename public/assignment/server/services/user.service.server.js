@@ -124,7 +124,7 @@ module.exports = function(app, userModel) {
         userModel.findUserById(userId)
             .then(
                 function (doc) {
-                    delete doc.password
+                    delete doc.password;
                     res.json(doc);
                 },
                 function (err) {

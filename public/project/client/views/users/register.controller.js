@@ -52,17 +52,16 @@
             UserService
                 .register(newUser)
                 .then(function(response) {
-                    //if (response.data){
-                    //    if (response.data.stringify.indexOf("Err") !== -1){
-                    //        vm.message = "User already exists";
-                    //        return ;
-                    //    }
-                    //}
-
                     var newUser = response.data;
-                    if ((newUser) && (newUser !== {})) {
+                    if (newUser == null){
+                        vm.message = "You are already registered.";
+                        return ;
+                    }
+                    if (newUser) {
+                        console.log("me");
                         UserService.setCurrentUser(newUser);
                         $location.path("/profile");
+                        return ;
                     }
                 });
         }

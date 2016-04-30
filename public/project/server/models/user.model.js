@@ -124,7 +124,7 @@ module.exports = function (mongoose, db) {
 
         var deferred = q.defer();
         UserTModel
-            .findByIdAndUpdate(user._id, {$set:newUser}, {new: true, upsert: true}, function(err, doc) {
+            .findByIdAndUpdate(userId, {$set:newUser}, {new: true, upsert: true}, function(err, doc) {
             if (err) {
                 deferred.reject(err);
             }
@@ -135,6 +135,7 @@ module.exports = function (mongoose, db) {
 
         return deferred.promise;
     }
+
 
     function findUsersById(userIds) {
 

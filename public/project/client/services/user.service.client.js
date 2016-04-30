@@ -31,7 +31,7 @@
         return service;
 
         function findUserByCredentials(username, password) {
-            return $http.get("/api/project/user?username=" + username + "&password=" + password);
+            return $http.post("/api/project/login", {username: username, password: password});
         }
 
         function findUserById(userId) {
@@ -47,7 +47,7 @@
         }
 
         function createUser(user) {
-            return $http.post("/api/project/user", user);
+            return $http.post("/api/project/register", user);
         }
 
         function deleteUserById(userId) {
@@ -55,7 +55,7 @@
         }
 
         function updateUser(userId, user) {
-            return $http.put("/api/project/user/" + userId, user);
+            return $http.put("/api/project/user/", userId, user);
         }
 
         function getProfile() {

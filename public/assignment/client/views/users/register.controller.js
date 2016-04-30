@@ -49,6 +49,7 @@
                     if (newUser) {
                         UserService.setCurrentUser(newUser);
                         $location.path("/profile");
+                        return ;
                     }
                 });
         }
