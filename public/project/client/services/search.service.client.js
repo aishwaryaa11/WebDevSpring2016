@@ -11,7 +11,7 @@
         return api;
 
         function search(term) {
-            return $http.get("/api/project/user/234/search?term=" + term);
+            return $http.get("/api/project/user/000/search?term=" + term);
         }
     }
 })();

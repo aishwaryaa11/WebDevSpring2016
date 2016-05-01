@@ -3,7 +3,7 @@
         .module("Travelogue")
         .controller("DiaryExpandController", diaryExpandController);
 
-    function diaryExpandController(diaryExpandService, DiaryService, $routeParams) {
+    function diaryExpandController(DiaryExpandService, DiaryService, $routeParams) {
         var vm = this;
         vm.currentField = null;
         vm.eField = null;
@@ -18,7 +18,7 @@
                 'Multi Line Text Field',
             ];
 
-        var diaryId = "000";
+        diaryId = "000";
         if ($routeParams.diaryId) {
             diaryId = $routeParams.diaryId;
         }
@@ -39,7 +39,7 @@
             ];
 
         function init() {
-            diaryExpandService
+            DiaryExpandService
                 .getFieldsForDiary(diaryId)
                 .then(function (response) {
                     vm.fields = response.data;
@@ -57,7 +57,7 @@
 
         function sendEdit(field) {
             vm.currentField = null;
-            diaryExpandService
+            DiaryExpandService
                 .updateField(diaryId, field._id, field)
                 .then(init);
         }
@@ -71,7 +71,7 @@
 
         function deleteField(field) {
             vm.currentField = null;
-            diaryExpandService
+            DiaryExpandService
                 .deleteFieldFromDiary(diaryId, field._id)
                 .then(init);
         }
@@ -86,9 +86,9 @@
         }
 
         function addField(fieldType) {
-            var field = {"title": "", "type": translateFieldType(fieldType), "placeholder": "", "options": null};
+            var field = {"title": "", "type": translateFieldType(fieldType), "placeholder": "", "diaryId": diaryId};
             console.log(field);
-            diaryExpandService
+            DiaryExpandService
                 .createFieldForDiary(diaryId, field)
                 .then(init);
         }
@@ -106,7 +106,7 @@
 
         function commitEdit(field) {
             vm.eField = field;
-            diaryExpandService
+            DiaryExpandService
                 .updateField(diaryId, vm.eField._id, vm.eField)
                 .then(init);
         }

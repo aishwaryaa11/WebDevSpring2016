@@ -8,20 +8,20 @@
     </ul>
     <br>
     <table class="table table-responsive">
-        <tbody ng-model="model.fields"  as-sortable="model.sortableOptions">
-        <tr ng-switch="field.options" ng-repeat="field in model.fields" as-sortable-item>
+        <tbody ng-model="model.diary.fields"  as-sortable="model.sortableOptions">
+        <tr ng-switch="field.type" ng-repeat="field in model.diary.fields" as-sortable-item>
             <td ng-switch-when="TEXT">
                 <label>{{field.label}}</label>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="{{field.placeholder}}">
-                    <div class="input-group-btn" ng-include="'buttons.html'"></div>
+                    <div class="input-group-btn" ng-include="'views/forms/buttons.html'"></div>
                 </div>
             </td>
             <td ng-switch-when="TEXTAREA">
                 <label>{{field.label}}</label>
                 <div class="input-group">
                     <textarea class="form-control" placeholder="{{field.placeholder}}"></textarea>
-                    <div class="input-group-btn" ng-include="'buttons.html'"></div>
+                    <div class="input-group-btn" ng-include="'views/forms/buttons.html'"></div>
                 </div>
             </td>
             <br>
@@ -54,7 +54,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">{{model.eField.label}}</h4>
                 </div>
-                <div class="modal-body" ng-switch on="model.eField.type">
+                <div class="modal-body" ng-switch="model.eField.type">
                     <div ng-switch-when="TEXT">
                         <h3>Notes/Tags</h3>
                         <form>

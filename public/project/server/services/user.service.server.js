@@ -176,8 +176,8 @@ module.exports = function(app, userTModel, diaryModel, authorized, bcrypt) {
         userTModel.findAllUsers()
             .then(
                 function (doc) {
-                    console.log(doc);
-                    res.json(doc);
+                    console.log("hello from the other side"+doc);
+                    res.send(doc);
                 },
                 function (err) {
                     res.status(400).send(err);

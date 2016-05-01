@@ -4,8 +4,8 @@ module.exports = function(mongoose) {
         label: String,
         type: String,
         userId: String,
+        diaryId: String,
         placeholder: String,
-        options: [{label: String, value: String}], //2 options: diary body or tags
         created: Date,
         updated: Date
     }, {collection: 'project.fields'});

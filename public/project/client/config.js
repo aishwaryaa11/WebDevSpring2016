@@ -86,7 +86,7 @@
                 console.log(user);
                 $rootScope.errorMessage = "You need to log in.";
                 deferred.reject();
-                $location.url("/home")
+                $location.url("/home");
                 return deferred.promise;
             }
         });
@@ -97,7 +97,7 @@
 
         $http.get("/api/project/loggedin").success(function(user)
         {
-            if (user.admin) {
+            if (user.admin == 'true') {
                 console.log(user);
                 UserService.setCurrentUser(user);
                 deferred.resolve();

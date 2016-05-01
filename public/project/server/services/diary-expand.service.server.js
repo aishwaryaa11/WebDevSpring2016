@@ -3,8 +3,8 @@ module.exports = function(app, userTModel, diaryModel, auth) {
     app.get("/api/project/field", auth, findAllFields);
     app.get("/api/project/user/:userId/field", auth, findFieldsByUserId);
     app.delete("/api/project/diary/:diaryId/field/:fieldId", auth, deleteFieldById);
-    app.post("/api/project/diary/:diaryId/field/", auth, addFieldToDiary);
-    app.put("/api/project/diary/:diaryId/field/", auth, updateFieldById);
+    app.post("/api/project/diary/:diaryId/field", auth, addFieldToDiary);
+    app.put("/api/project/diary/:diaryId/field", auth, updateFieldById);
     app.get("/api/project/diary/:diaryId/field", auth, findFieldsByDiaryId);
 
 
@@ -13,7 +13,7 @@ module.exports = function(app, userTModel, diaryModel, auth) {
             .findAllFields()
             .then(
                 function (doc) {
-                    res.json(doc);
+                    res.send(doc);
                 },
                 function (err) {
                     res.status(400).send(err);
@@ -84,7 +84,7 @@ module.exports = function(app, userTModel, diaryModel, auth) {
                         .findFieldsByUserId(user._id)
                         .then(
                             function (doc) {
-                                res.json(doc);
+                                res.send(doc);
                             },
                             function (err) {
                                 res.status(400).send(err);
@@ -102,7 +102,7 @@ module.exports = function(app, userTModel, diaryModel, auth) {
             .findFieldsByDiaryId(req.params.diaryId)
             .then(
                 function (doc) {
-                    res.json(doc);
+                    res.send(doc);
                 },
                 function (err) {
                     res.status(400).send(err);
