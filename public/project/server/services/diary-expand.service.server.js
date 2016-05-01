@@ -4,7 +4,7 @@ module.exports = function(app, userTModel, diaryModel, auth) {
     app.get("/api/project/user/:userId/field", auth, findFieldsByUserId);
     app.delete("/api/project/diary/:diaryId/field/:fieldId", auth, deleteFieldById);
     app.post("/api/project/diary/:diaryId/field", auth, addFieldToDiary);
-    app.put("/api/project/diary/:diaryId/field", auth, updateFieldById);
+    app.put("/api/project/diary/:diaryId/field/:fieldId", auth, updateFieldById);
     app.get("/api/project/diary/:diaryId/field", auth, findFieldsByDiaryId);
 
 

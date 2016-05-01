@@ -18,7 +18,7 @@
                 'Multi Line Text Field',
             ];
 
-        diaryId = "000";
+        var diaryId = "000";
         if ($routeParams.diaryId) {
             diaryId = $routeParams.diaryId;
         }

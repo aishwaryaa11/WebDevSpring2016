@@ -83,8 +83,12 @@ a {
 
 .input-group {
     width: 70%;
+    white-space: nowrap;
 }
 
+.input-group .form-control {
+    float: right;
+}
 
 @media (min-width: 768px) {
   .main {
